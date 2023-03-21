@@ -36,14 +36,12 @@ mason.setup()
 mason_lsp.setup({
 	-- list of servers for mason to install
 	ensure_installed = {
-		"clangd",
-		"gopls",
-		"dockerls",
-		"lua_ls",
-		"pyright",
-		"rust_analyzer",
-		"taplo",
-		"jsonls",
+		"clangd", -- C/C++
+		"dockerls", -- docker
+		"lua_ls", -- lua
+		"pyright", --python
+		"taplo", --TOML
+		"jsonls", -- json
 	},
 	-- auto-install configured servers (with lspconfig)
 	automatic_installation = true, -- not the same as ensure_installed
@@ -55,10 +53,11 @@ mason_null_ls.setup({
 		"prettier", -- ts/js formatter
 		"stylua", -- lua formatter
 		"eslint_d", -- ts/js linter
-		"pylint", -- ts/js linter
-		"black",
-		"flake8",
-		"isort",
+		-- "pylint", -- python linter
+		"black", -- python formatter
+		"flake8", -- python linter
+		"isort", -- Python utility / library to sort imports alphabetically
+		"clangd-format", -- C/C++ formatter
 	},
 	-- auto-install configured formatters & linters (with null-ls)
 	automatic_installation = true,
