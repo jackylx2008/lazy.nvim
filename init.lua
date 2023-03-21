@@ -1,5 +1,7 @@
-require("user.keymaps")
-require("user.options")
+-- require("user.keymaps")
+-- require("user.options")
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 require("user.functions")
 require("user.globals")
 
