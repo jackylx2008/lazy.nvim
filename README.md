@@ -1,3 +1,56 @@
+## 2023-03-19
+
+```bash
+mv ~/.config/nvim ~/.config/nvim.bak
+
+# optional but recommended
+mv ~/.local/share/nvim ~/.local/share/nvim.bak
+mv ~/.local/state/nvim ~/.local/state/nvim.bak
+mv ~/.cache/nvim ~/.cache/nvim.bak
+
+git clone https://github.com/jackylx2008/lazy.nvim.git ~/.config/nvim
+```
+
+# nvim_lazy.nvim
+
+## 更新记录
+
+### 2023-03-14 11:00
+
+* 因为`packer`在`Mac`上进行插件管理时一直存在问题，在`github`上这个问题一直没得到解决，似乎原作者对维护这个项目不那么上心。偶然发现了新的插件管理器`lazy.nvim`，经过对比有更好的界面同时更新维护积极，所以准备第N次重启`nvim`的配置
+* `nvim`在Linux/Mac相关目录：
+  `~/.config/nvim ~/.local/share/nvim ~/.local/state/nvim ~/.cache/nvim`
+ * `nvim`在Windows相关目录：
+   `$env:LOCALAPPDATA\nvim` `$env:LOCALAPPDATA\nvim-data` 
+
+### 2023-03-14 16:00
+
+* 建立目录结构和`init.lua` 和`plugins.lua`
+  .
+  ├───after
+  └───lua
+      └───config
+      └───`plugins.lua`
+  └───`init.lua`
+* 安装`lazy.nvim
+  * Tips：如果安装不成功，删除`nvim-data`文件，调整网络重新安装
+
+### 2023-03-15 17:30
+
+* 添加多个`colorscheme`，并设置`colorscheme` 为懒加载
+* 添加`colorscheme.lua`，将所有`colorscheme`迁移，并在`plugins.lua`中调用
+
+### 2023-03-17 09:00
+
+- 创建目录`./after/plugin/`，添加`default.lua`，`keymaps.lua`
+
+
+## 使用方法
+
+* `Linux/Mac`
+  `git clone https://github.com/jackylx2008/nvim_lazy.nvim.git ~/.config/nvim`
+ * `Window`
+   `git clone https://github.com/jackylx2008/nvim_lazy.nvim.git $env:LOCALAPPDATA/nvim`
 ## Showcase
 
 ![demo1](https://github.com/arturgoms/nvim/blob/main/images/1.png)
