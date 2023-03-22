@@ -316,15 +316,15 @@ return {
 
 	-- Ui Noice
 	-- experimental
-	-- {
-	-- 	"folke/noice.nvim",
-	-- 	event = "VeryLazy",
-	-- 	opts = {
-	-- 		presets = {
-	-- 			command_palette = true,
-	-- 		},
-	-- 	},
-	-- },
+	{
+		"folke/noice.nvim",
+		event = "VeryLazy",
+		opts = {
+			presets = {
+				command_palette = true,
+			},
+		},
+	},
 
 	-- local plugins need to be explicitly configured with dir
 	-- { dir = "~/git/moonbow.nvim" },
