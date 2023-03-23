@@ -37,7 +37,7 @@ treesitter.setup({
 		"vim",
 		"dockerfile",
 		"gitignore",
-		"python",
+		-- "python",
 		-- "rust",
 		-- "toml",
 		"cpp",
