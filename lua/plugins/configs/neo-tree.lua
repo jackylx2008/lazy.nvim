@@ -46,7 +46,6 @@ neo_tree.setup({
 		mappings = {
 			["o"] = "open",
 			["v"] = "open_vsplit",
-			["<space>"] = false,
 		},
 	},
 	filesystem = {

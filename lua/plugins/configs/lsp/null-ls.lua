@@ -20,7 +20,6 @@ null_ls.setup({
 		formatting.stylua, -- lua formatter
 		formatting.black.with({ extra_args = { "--fast" } }),
 		formatting.isort,
-		-- formatting.clang_format,
 		diagnostics.flake8,
 		diagnostics.eslint_d.with({ -- js/ts linter
 			-- only enable eslint if root has .eslintrc.js (not in youtube nvim video)

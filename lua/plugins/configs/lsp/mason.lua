@@ -36,13 +36,13 @@ mason.setup()
 mason_lsp.setup({
 	-- list of servers for mason to install
 	ensure_installed = {
-		"dockerls", -- docker
-		"pyright", --python
-		"jsonls", -- json
-		-- For Mac these settings are OK. for windows, install these packages manually.
-		-- "taplo", --TOML
-		-- "clangd", -- C/C++
-		-- "lua_ls", -- lua
+		"clangd",
+		"dockerls",
+		"lua_ls",
+		"pyright",
+		"rust_analyzer",
+		"taplo",
+		"jsonls",
 	},
 	-- auto-install configured servers (with lspconfig)
 	automatic_installation = true, -- not the same as ensure_installed
@@ -51,14 +51,13 @@ mason_lsp.setup({
 mason_null_ls.setup({
 	-- list of formatters & linters for mason to install
 	ensure_installed = {
-		-- "prettier", -- ts/js formatter
-		-- "eslint_d", -- ts/js linter
-		-- "pylint", -- python linter
-		"black", -- python formatter
-		"flake8", -- python linter
-		"isort", -- Python utility / library to sort imports alphabetically
-		-- For Mac these settings are OK. for windows, install these packages manually.
-		-- "stylua", -- lua formatter
+		"prettier", -- ts/js formatter
+		"stylua", -- lua formatter
+		"eslint_d", -- ts/js linter
+		"pylint", -- ts/js linter
+		"black",
+		"flake8",
+		"isort",
 	},
 	-- auto-install configured formatters & linters (with null-ls)
 	automatic_installation = true,

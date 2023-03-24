@@ -1,25 +1,10 @@
--- 自动安装 Lazy.nvim
--- 插件安装目录
--- ~/user/.Appdate/local/nvim-data/lazy/
-local fn = vim.fn
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-	vim.notify("正在安装Lazy.nvim，请稍后...")
-	vim.fn.system({
-		"git",
-		"clone",
-		"--filter=blob:none",
-		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable", -- latest stable release
-		lazypath,
-	})
-	local rtp_addition = vim.fn.stdpath("data") .. "/lazy/*"
-	if not string.find(vim.o.runtimepath, rtp_addition) then
-		vim.o.runtimepath = rtp_addition .. "," .. vim.o.runtimepath
-	end
-	vim.notify("Lazy.nvim 安装完毕")
+  -- bootstrap lazy.nvim
+  -- stylua: ignore
+  vim.fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable", lazypath })
 end
-vim.opt.rtp:prepend(lazypath)
+vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
 require("lazy").setup({
 	spec = {
