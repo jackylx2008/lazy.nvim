@@ -46,17 +46,17 @@ return {
 			require("plugins.configs.bufferline")
 		end,
 	},
-	-- {
-	-- 	"romgrk/barbar.nvim",
-	-- 	config = function()
-	-- 		require("plugins.configs.barbar")
-	-- 	end,
-	-- },
-	{ "moll/vim-bbye" },
+
+	-- Buffer organizing
 	{
-		"tiagovla/scope.nvim",
-		config = true,
+		"romgrk/barbar.nvim",
+		config = function()
+			require("plugins.configs.barbar")
+		end,
 	},
+
+	-- Buffer close
+	{ "moll/vim-bbye" },
 
 	-- Maximize splits
 	{ "szw/vim-maximizer" },
@@ -100,6 +100,7 @@ return {
 			require("plugins.configs.project")
 		end,
 	},
+	-- Only work on Linux and MacOS
 	{ "ibhagwan/fzf-lua" },
 
 	-- Dashboard Init
@@ -341,6 +342,13 @@ return {
 				ignore_beginning = true,
 			})
 		end,
+		-- IndentLine
+		{
+			"lukas-reineke/indent-blankline.nvim",
+			config = function()
+				require("plugins.configs.indentblankline")
+			end,
+		},
 	},
 
 	-- Ui Noice
