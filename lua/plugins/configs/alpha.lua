@@ -13,6 +13,7 @@ local nvim_web_devicons = require("nvim-web-devicons")
 local cdir = vim.fn.getcwd()
 
 local function getGreeting(name)
+	local datetime = os.date("  %Y-%m-%d %H:%M:%S\n")
 	local tableTime = os.date("*t")
 	local hour = tableTime.hour
 	local greetingsTable = {
@@ -34,10 +35,10 @@ local function getGreeting(name)
 	elseif hour >= 21 then
 		greetingIndex = 5
 	end
-	return greetingsTable[greetingIndex] .. ", " .. name
+	return greetingsTable[greetingIndex] .. ", " .. name .. "\n" .. datetime
 end
 
-local userName = "Artur"
+local userName = "Jackylx"
 local greeting = getGreeting(userName)
 
 local greetHeading = {
@@ -161,12 +162,28 @@ end
 local header = {
 	type = "text",
 	val = {
-		" ",
-		"    ███    ██ ██    ██ ██ ███    ███",
-		"    ████   ██ ██    ██ ██ ████  ████",
-		"    ██ ██  ██ ██    ██ ██ ██ ████ ██",
-		"    ██  ██ ██  ██  ██  ██ ██  ██  ██",
-		"    ██   ████   ████   ██ ██      ██",
+		[[  ───────────▄▄▄▄▄▄▄▄▄─────────── ]],
+		[[  ────────▄█████████████▄──────── ]],
+		[[  █████──█████████████████──█████ ]],
+		[[  ▐████▌─▀███▄───────▄███▀─▐████▌ ]],
+		[[  ─█████▄──▀███▄───▄███▀──▄█████─ ]],
+		[[  ─▐██▀███▄──▀███▄███▀──▄███▀██▌─ ]],
+		[[  ──███▄▀███▄──▀███▀──▄███▀▄███── ]],
+		[[  ──▐█▄▀█▄▀███─▄─▀─▄─███▀▄█▀▄█▌── ]],
+		[[  ───███▄▀█▄██─██▄██─██▄█▀▄███─── ]],
+		[[  ────▀███▄▀██─█████─██▀▄███▀──── ]],
+		[[  ───█▄─▀█████─█████─█████▀─▄█─── ]],
+		[[  ───███────────███────────███─── ]],
+		[[  ───███▄────▄█─███─█▄────▄███─── ]],
+		[[  ───█████─▄███─███─███▄─█████─── ]],
+		[[  ───█████─████─███─████─█████─── ]],
+		[[  ───█████─████─███─████─█████─── ]],
+		[[  ───█████─████─███─████─█████─── ]],
+		[[  ───█████─████▄▄▄▄▄████─█████─── ]],
+		[[  ────▀███─█████████████─███▀──── ]],
+		[[  ──────▀█─███─▄▄▄▄▄─███─█▀────── ]],
+		[[  ─────────▀█▌▐█████▌▐█▀───────── ]],
+		[[  ────────────███████──────────── ]],
 	},
 	opts = { position = "center" },
 }
@@ -199,16 +216,6 @@ local buttons = {
 	val = {
 		{ type = "text", val = "Quick links", opts = { hl = "SpecialComment", position = "center" } },
 		{ type = "padding", val = 1 },
-		dashboard.button(
-			"p",
-			" " .. " Find project",
-			":lua require('telescope').extensions.projects.projects()<CR>"
-		),
-		dashboard.button("f", "  Find file", ":FzfLua files <CR>"),
-		dashboard.button("F", "  Find text", ":FzfLua live_grep <CR>"),
-		dashboard.button("n", "  New file", ":ene <BAR> startinsert <CR>"),
-		dashboard.button("c", "  Configuration", ":e ~/.config/nvim/init.lua <CR>"),
-		dashboard.button("u", "  Update plugins", ":Lazy sync<CR>"),
 		dashboard.button("q", "  Quit", ":qa<CR>"),
 	},
 	position = "center",

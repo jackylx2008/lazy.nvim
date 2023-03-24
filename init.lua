@@ -10,4 +10,4 @@ require("user.lazy")
 require("user.colorscheme")
 require("ui").load_ui_plugins()
 
--- vim.cmd.colorscheme [[tokyonight]]
+-- vim.cmd.colorscheme([[tokyonight]])

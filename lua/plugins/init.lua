@@ -6,7 +6,6 @@ return {
 		module = "neo-tree",
 		cmd = "Neotree",
 		dependencies = {
-			"nvim-tree/nvim-web-devicons",
 			{ "MunifTanjim/nui.nvim", module = "nui" },
 			"nvim-lua/plenary.nvim",
 		},
@@ -299,9 +298,9 @@ return {
 	{ "lewis6991/impatient.nvim" },
 
 	-- Rust
-	-- {
-	-- 	"simrat39/rust-tools.nvim",
-	-- },
+	{
+		"simrat39/rust-tools.nvim",
+	},
 	{ "Saecki/crates.nvim" },
 
 	-- Spectre: Better find and replace
@@ -324,7 +323,25 @@ return {
 		config = true,
 	},
 
-	{ "ray-x/guihua.lua" },
+	-- Jumps and Motions
+	{
+		"ggandor/leap.nvim",
+		keys = { "s", "S" },
+		config = function()
+			local leap = require("leap")
+			leap.add_default_mappings()
+		end,
+	},
+	{
+		"abecodes/tabout.nvim",
+		dependencies = { "nvim-cmp" },
+		config = function()
+			require("tabout").setup({
+				completion = false,
+				ignore_beginning = true,
+			})
+		end,
+	},
 
 	-- Ui Noice
 	-- experimental
