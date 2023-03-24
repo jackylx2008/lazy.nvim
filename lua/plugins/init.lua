@@ -5,15 +5,32 @@ return {
 		branch = "v2.x",
 		module = "neo-tree",
 		cmd = "Neotree",
-		dependencies = { { "MunifTanjim/nui.nvim", module = "nui" }, "nvim-lua/plenary.nvim" },
+		dependencies = {
+			"nvim-tree/nvim-web-devicons",
+			{ "MunifTanjim/nui.nvim", module = "nui" },
+			"nvim-lua/plenary.nvim",
+		},
 		config = function()
 			require("plugins.configs.neo-tree")
 		end,
 	},
 	-- Coloscheme
-	{
-		"arturgoms/moonbow.nvim",
-	},
+	{ "arturgoms/moonbow.nvim" },
+	{ "mhartington/oceanic-next", lazy = true },
+	{ "glepnir/zephyr-nvim", lazy = true },
+	{ "shaunsingh/nord.nvim", lazy = true },
+	{ "ful1e5/onedark.nvim", lazy = true },
+	{ "EdenEast/nightfox.nvim", lazy = true },
+	{ "Mofiqul/vscode.nvim", lazy = true },
+	{ "lunarvim/darkplus.nvim", lazy = true },
+	{ "NTBBloodbath/doom-one.nvim", lazy = true },
+
+	{ "catppuccin/nvim", lazy = true, name = "catppuccin" },
+	{ "sainnhe/everforest", lazy = true },
+	{ "folke/tokyonight.nvim", opts = { style = "moon" } },
+	{ "projekt0n/github-nvim-theme", theme_style = "dark_default", lazy = true },
+	{ "sainnhe/gruvbox-material", lazy = true },
+
 	-- Whichkey
 	{
 		"folke/which-key.nvim",
@@ -95,10 +112,10 @@ return {
 	},
 
 	-- Auto completions
+	{ "hrsh7th/cmp-nvim-lsp" },
 	{ "hrsh7th/cmp-buffer" }, -- buffer completions
 	{ "hrsh7th/cmp-path" }, -- path completions
 	{ "hrsh7th/cmp-cmdline" }, -- cmdline completions
-	{ "hrsh7th/cmp-nvim-lsp" },
 	{ "hrsh7th/cmp-emoji" },
 	{ "hrsh7th/cmp-nvim-lua" },
 	{
@@ -282,9 +299,9 @@ return {
 	{ "lewis6991/impatient.nvim" },
 
 	-- Rust
-	{
-		"simrat39/rust-tools.nvim",
-	},
+	-- {
+	-- 	"simrat39/rust-tools.nvim",
+	-- },
 	{ "Saecki/crates.nvim" },
 
 	-- Spectre: Better find and replace
@@ -307,24 +324,19 @@ return {
 		config = true,
 	},
 
-	-- Golang
-	{
-		"ray-x/go.nvim",
-		config = true,
-	},
 	{ "ray-x/guihua.lua" },
 
 	-- Ui Noice
 	-- experimental
-	-- {
-	-- 	"folke/noice.nvim",
-	-- 	event = "VeryLazy",
-	-- 	opts = {
-	-- 		presets = {
-	-- 			command_palette = true,
-	-- 		},
-	-- 	},
-	-- },
+	{
+		"folke/noice.nvim",
+		event = "VeryLazy",
+		opts = {
+			presets = {
+				command_palette = true,
+			},
+		},
+	},
 
 	-- local plugins need to be explicitly configured with dir
 	-- { dir = "~/git/moonbow.nvim" },

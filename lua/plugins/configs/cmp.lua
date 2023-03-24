@@ -13,6 +13,18 @@ if not lspkind_status_ok then
 	return
 end
 
+local source_mapping = {
+	luasnip = "[Snip]",
+	nvim_lsp = "[Lsp]",
+	buffer = "[Buffer]",
+	nvim_lua = "[Lua]",
+	treesitter = "[Tree]",
+	path = "[Path]",
+	rg = "[Rg]",
+	nvim_lsp_signature_help = "[Sig]",
+	-- cmp_tabnine = "[TNine]",
+}
+
 local compare = require("cmp.config.compare")
 
 require("luasnip/loaders/from_vscode").lazy_load()
@@ -90,23 +102,59 @@ cmp.setup({
 			"s",
 		}),
 	}),
+	-- formatting = {
+	-- 	fields = { "kind", "abbr", "menu" },
+	-- 	format = lspkind.cmp_format({
+	-- 		maxwidth = 50,
+	-- 		-- ellipsis_char = "...",
+	-- 	}),
+	-- },
+
 	formatting = {
-		fields = { "kind", "abbr", "menu" },
 		format = lspkind.cmp_format({
+			mode = "symbol_text",
 			maxwidth = 50,
-			ellipsis_char = "...",
+
+			before = function(entry, vim_item)
+				vim_item.kind = lspkind.presets.default[vim_item.kind]
+
+				local menu = source_mapping[entry.source.name]
+				-- if entry.source.name == "cmp_tabnine" then
+				--   if entry.completion_item.data ~= nil and entry.completion_item.data.detail ~= nil then
+				--     menu = entry.completion_item.data.detail .. " " .. menu
+				--   end
+				--   vim_item.kind = ""
+				-- end
+				vim_item.menu = menu
+				return vim_item
+			end,
 		}),
 	},
+	-- sources = {
+	-- 	{ name = "crates", group_index = 1 },
+	-- 	{ name = "nvim_lsp", group_index = 2 },
+	-- 	{ name = "nvim_lua", group_index = 2 },
+	-- 	-- { name = "copilot", group_index = 2 },
+	-- 	{ name = "luasnip", group_index = 2 },
+	-- 	{ name = "buffer", group_index = 2 },
+	-- 	{ name = "cmp_tabnine", group_index = 2 },
+	-- 	{ name = "path", group_index = 2 },
+	-- 	{ name = "emoji", group_index = 2 },
+	-- },
 	sources = {
-		{ name = "crates", group_index = 1 },
-		{ name = "nvim_lsp", group_index = 2 },
-		{ name = "nvim_lua", group_index = 2 },
-		-- { name = "copilot", group_index = 2 },
-		{ name = "luasnip", group_index = 2 },
-		{ name = "buffer", group_index = 2 },
-		{ name = "cmp_tabnine", group_index = 2 },
-		{ name = "path", group_index = 2 },
-		{ name = "emoji", group_index = 2 },
+		{ name = "nvim_lsp", max_item_count = 15 },
+		{ name = "nvim_lsp_signature_help", max_item_count = 5 },
+		{ name = "luasnip", max_item_count = 5 },
+		-- { name = "cmp_tabnine" },
+		{ name = "treesitter", max_item_count = 5 },
+		-- { name = "rg", max_item_count = 2 },
+		{ name = "buffer", max_item_count = 5 },
+		{ name = "nvim_lua" },
+		{ name = "path" },
+		{ name = "crates" },
+		-- { name = "spell" },
+		{ name = "emoji" },
+		-- { name = "calc" },
 	},
 	sorting = {
 		priority_weight = 2,
