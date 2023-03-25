@@ -46,14 +46,19 @@ return {
 			require("plugins.configs.bufferline")
 		end,
 	},
-
-	-- Buffer organizing
+	{ "moll/vim-bbye" },
 	{
-		"romgrk/barbar.nvim",
-		config = function()
-			require("plugins.configs.barbar")
-		end,
+		"tiagovla/scope.nvim",
+		config = true,
 	},
+	-- Buffer organizing
+	-- WARN: Someting wrong when using this plugin
+	-- {
+	-- 	"romgrk/barbar.nvim",
+	-- 	config = function()
+	-- 		require("plugins.configs.barbar")
+	-- 	end,
+	-- },
 
 	-- Buffer close
 	{ "moll/vim-bbye" },
@@ -227,6 +232,7 @@ return {
 			require("plugins.configs.dressing")
 		end,
 	},
+	-- A simple statusline/winbar component that uses LSP to show your current code context
 	{
 		"SmiteshP/nvim-navic",
 		config = function()
