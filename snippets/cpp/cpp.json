@@ -1,0 +1,9 @@
+{
+  "string": {
+    "prefix": "str",
+    "body": [
+      "std::string"
+    ],
+    "description": "Quickly type std::string setup in nvim/snippet"
+  }
+}

@@ -130,9 +130,14 @@ return {
 		end,
 	},
 	-- Shippets
-	{ "L3MON4D3/LuaSnip" },
+	{
+		"L3MON4D3/LuaSnip",
+		dependencies = { "rafamadriz/friendly-snippets", "honza/vim-snippets" },
+		config = function()
+			require("snip").setup()
+		end,
+	},
 	{ "saadparwaiz1/cmp_luasnip" },
-	{ "rafamadriz/friendly-snippets" },
 
 	-- Manage and Install LSP servers
 	{ "williamboman/mason-lspconfig" },

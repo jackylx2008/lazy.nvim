@@ -1,0 +1,13 @@
+{
+  "name": "cpp",
+  "version": "1.0.0",
+  "description": "Cpp code snippets",
+  "contributes": {
+    "snippets": [
+      {
+        "language": "cpp",
+        "path": "./cpp.json"
+      }
+    ]
+  }
+}
