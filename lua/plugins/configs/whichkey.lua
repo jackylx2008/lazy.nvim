@@ -91,6 +91,7 @@ local mappings = {
 	["/"] = { "<Plug>(comment_toggle_linewise_current)", "Comment" },
 	["b"] = { "<cmd>lua require('user.bfs').open()<cr>", "Buffers" },
 	["e"] = { "<cmd>Neotree toggle<cr>", "Explorer" },
+	["nv"] = { "<cmd>Navbuddy<cr>", "Navbuddy" },
 	["q"] = { '<cmd>lua require("user.functions").smart_quit()<CR>', "Quit" },
 	["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
 	["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
