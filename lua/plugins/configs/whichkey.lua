@@ -290,11 +290,18 @@ local mappings = {
 		v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
 	},
 
+	-- T = {
+	-- 	name = "Treesitter",
+	-- 	h = { "<cmd>TSHighlightCapturesUnderCursor<cr>", "Highlight" },
+	-- 	p = { "<cmd>TSPlaygroundToggle<cr>", "Playground" },
+	-- 	r = { "<cmd>TSToggle rainbow<cr>", "Rainbow" },
+	-- },
 	T = {
-		name = "Treesitter",
-		h = { "<cmd>TSHighlightCapturesUnderCursor<cr>", "Highlight" },
-		p = { "<cmd>TSPlaygroundToggle<cr>", "Playground" },
-		r = { "<cmd>TSToggle rainbow<cr>", "Rainbow" },
+		name = "Translate",
+		w = { "<cmd>TranslateW<cr>", "Translate in a window" },
+		r = { "<cmd>TranslateR<cr>", "Translate and replace the text with tranlation" },
+		x = { "<cmd>TranslateX<cr>", "Translate the text in the clipboard" },
+		h = { "<cmd>TranslateH<cr>", "Translate history" },
 	},
 }
 
@@ -309,6 +316,11 @@ local vopts = {
 local vmappings = {
 	["/"] = { "<Plug>(comment_toggle_linewise_visual)", "Comment toggle linewise (visual)" },
 	s = { "<esc><cmd>'<,'>SnipRun<cr>", "Run range" },
+	T = {
+		name = "Translate",
+		w = { "<cmd>TranslateWV<cr>", "Translate in a window" },
+		r = { "<cmd>TranslateRV<cr>", "Translate and replace the text with tranlation" },
+	},
 }
 
 which_key.setup(setup)

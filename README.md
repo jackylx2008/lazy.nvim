@@ -1,5 +1,3 @@
-## TODO: c++下面 snip 用不了；调整 which-key
-
 ## 2023-03-19
 
 ```bash
@@ -53,6 +51,12 @@ git clone https://github.com/jackylx2008/lazy.nvim.git ~/.config/nvim
 - 目前的配置满足我现在的使用要求，后续随缘修改配置
 - 这个配置的`ui`配置文件复杂，完全没搞懂
 - 后面再调整一下`whichkey`的配置
+
+### 2023-03-29 15:53
+
+- 调整了`default.lua`和`keymaps.lua`
+- 增加了一些自己的插件
+- 目前在`Mac`和`Windows`下面均运行理想
 
 ## 使用方法
 

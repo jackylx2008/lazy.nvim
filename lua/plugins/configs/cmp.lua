@@ -22,6 +22,8 @@ local source_mapping = {
 	path = "[Path]",
 	rg = "[Rg]",
 	nvim_lsp_signature_help = "[Sig]",
+	spell = "[Spell]",
+	emoji = "[Emoji]",
 	-- cmp_tabnine = "[TNine]",
 }
 
@@ -152,7 +154,16 @@ cmp.setup({
 		{ name = "nvim_lua" },
 		{ name = "path" },
 		{ name = "crates" },
-		-- { name = "spell" },
+		-- {
+		-- 	name = "spell",
+		-- 	max_item_count = 5,
+		-- 	option = {
+		-- 		keep_all_entries = true,
+		-- 		enable_in_context = function()
+		-- 			return true
+		-- 		end,
+		-- 	},
+		-- },
 		{ name = "emoji" },
 		-- { name = "calc" },
 	},

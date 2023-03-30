@@ -123,6 +123,13 @@ return {
 	{ "hrsh7th/cmp-cmdline" }, -- cmdline completions
 	{ "hrsh7th/cmp-emoji" },
 	{ "hrsh7th/cmp-nvim-lua" },
+	-- {
+	-- 	"f3fora/cmp-spell",
+	-- 	config = function()
+	-- 		vim.opt.spell = true
+	-- 		vim.opt.spelllang = { "ex_us" }
+	-- 	end,
+	-- },
 	{
 		"hrsh7th/nvim-cmp",
 		config = function()
@@ -361,6 +368,7 @@ return {
 			end,
 		},
 	},
+	--Naviagate
 	{
 		"SmiteshP/nvim-navbuddy",
 		dependencies = {
@@ -368,6 +376,26 @@ return {
 			"SmiteshP/nvim-navic",
 			"MunifTanjim/nui.nvim",
 		},
+	},
+	-- Diffview
+	{
+		"sindrets/diffview.nvim",
+		dependencies = "nvim-lua/plenary.nvim",
+		cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles" },
+	},
+	-- Translation
+	{
+		"voldikss/vim-translator",
+		cmd = { "Translate", "TranslateV", "TranslateW", "TranslateWV", "TranslateR", "TranslateRV", "TranslateX" },
+		config = function()
+			vim.g.translator_target_lang = "zh"
+			vim.g.translator_history_enable = true
+			-- vim.g.translator_default_engines = "haici"
+		end,
+	},
+	{
+		"potamides/pantran.nvim",
+		cmd = "Pantran",
 	},
 
 	-- Ui Noice
