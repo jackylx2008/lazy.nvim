@@ -3,6 +3,8 @@ local status, treesitter = pcall(require, "nvim-treesitter.configs")
 if not status then
 	return
 end
+-- For windows;Maybe need Visual Stdio
+require("nvim-treesitter.install").compilers = { "clang", "gcc" }
 
 -- configure treesitter
 treesitter.setup({
@@ -23,23 +25,23 @@ treesitter.setup({
 	-- ensure these language parsers are installed
 	ensure_installed = {
 		"json",
-		"javascript",
-		"typescript",
-		"tsx",
-		"yaml",
-		"html",
-		"css",
+		-- "javascript",
+		-- "typescript",
+		-- "tsx",
+		-- "yaml",
+		-- "html",
+		-- "css",
 		-- "markdown",
-		"svelte",
-		"graphql",
+		-- "svelte",
+		-- "graphql",
 		"bash",
 		"lua",
 		"vim",
 		"dockerfile",
 		"gitignore",
 		"python",
-		"rust",
-		"toml",
+		-- "rust",
+		-- "toml",
 	},
 	-- auto install above language parsers
 	auto_install = true,

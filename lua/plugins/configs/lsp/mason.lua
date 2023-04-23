@@ -40,9 +40,9 @@ mason_lsp.setup({
 		"dockerls",
 		"lua_ls",
 		"pyright",
-		"rust_analyzer",
-		"taplo",
-		"jsonls",
+		-- "rust_analyzer",
+		-- "taplo",  --a TOML toolkit
+		-- "jsonls",
 	},
 	-- auto-install configured servers (with lspconfig)
 	automatic_installation = true, -- not the same as ensure_installed
@@ -51,9 +51,9 @@ mason_lsp.setup({
 mason_null_ls.setup({
 	-- list of formatters & linters for mason to install
 	ensure_installed = {
-		"prettier", -- ts/js formatter
+		-- "prettier", -- ts/js formatter
 		"stylua", -- lua formatter
-		"eslint_d", -- ts/js linter
+		-- "eslint_d", -- ts/js linter
 		"pylint", -- ts/js linter
 		"black", -- python formatter
 		"flake8", -- python linter
