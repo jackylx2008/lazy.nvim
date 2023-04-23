@@ -29,7 +29,6 @@ return {
 	{ "folke/tokyonight.nvim", opts = { style = "moon" } },
 	{ "projekt0n/github-nvim-theme", theme_style = "dark_default" },
 	{ "sainnhe/gruvbox-material" },
-
 	-- Whichkey
 	{
 		"folke/which-key.nvim",
