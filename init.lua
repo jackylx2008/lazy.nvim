@@ -10,6 +10,7 @@ require("user.lazy")
 -- require("user.colorscheme")
 require("ui").load_ui_plugins()
 
+-- Random colorscheme
 local colorscheme_array = {
 	"gruvbox-material",
 	"github_dimmed",
@@ -35,5 +36,5 @@ local colorscheme_array = {
 	"gruvbox-material",
 	"vscode",
 }
-local colorscheme = colorscheme_array[math.random(1, 27)]
+local colorscheme = colorscheme_array[math.random(1, #colorscheme_array)]
 vim.cmd.colorscheme(colorscheme)
