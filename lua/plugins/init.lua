@@ -17,11 +17,9 @@ return {
 	-- { "arturgoms/moonbow.nvim" },
 	{ "mhartington/oceanic-next" },
 	{ "glepnir/zephyr-nvim" },
-	{ "shaunsingh/nord.nvim" },
 	{ "ful1e5/onedark.nvim" },
 	{ "EdenEast/nightfox.nvim" },
 	{ "Mofiqul/vscode.nvim" },
-	{ "lunarvim/darkplus.nvim" },
 	{ "NTBBloodbath/doom-one.nvim" },
 
 	{ "catppuccin/nvim", name = "catppuccin" },
