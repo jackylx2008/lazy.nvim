@@ -186,6 +186,7 @@ local mappings = {
 		f = { "<cmd>Telescope find_files<cr>", "Find File" },
 		t = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
 		s = { "<cmd>Telescope grep_string theme=ivy<cr>", "Find String" },
+		n = { "<cmd>Telescope notify theme=ivy<cr>", "List notice" },
 		h = { "<cmd>Telescope help_tags<cr>", "Help" },
 		i = { "<cmd>lua require('telescope').extensions.media_files.media_files()<cr>", "Media" },
 		l = { "<cmd>Telescope resume<cr>", "Last Search" },

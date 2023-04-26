@@ -40,6 +40,9 @@ mason_lsp.setup({
 		"dockerls",
 		"lua_ls",
 		"pyright",
+
+		-- Add binary location to your PATH
+		"marksman", -- Markdown
 		-- "rust_analyzer",
 		-- "taplo",  --a TOML toolkit
 		-- "jsonls",
@@ -58,6 +61,7 @@ mason_null_ls.setup({
 		"black", -- python formatter
 		"flake8", -- python linter
 		"isort", -- python import sort
+		"markdownlint", -- Markdown
 	},
 	-- auto-install configured formatters & linters (with null-ls)
 	automatic_installation = true,
