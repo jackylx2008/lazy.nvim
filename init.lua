@@ -35,6 +35,10 @@ local colorscheme_array = {
 	"onedark",
 	"gruvbox-material",
 	"vscode",
+	"kanagawa",
+	"kanagawa-wave",
+	"kanagawa-lotus",
+	"kanagawa-dragon",
 }
 local colorscheme = colorscheme_array[math.random(1, #colorscheme_array)]
 vim.cmd.colorscheme(colorscheme)

@@ -15,6 +15,7 @@ return {
 	},
 	-- Coloscheme
 	-- { "arturgoms/moonbow.nvim" },
+	{ "rebelot/kanagawa.nvim" },
 	{ "mhartington/oceanic-next" },
 	{ "glepnir/zephyr-nvim" },
 	{ "ful1e5/onedark.nvim" },
@@ -503,6 +504,7 @@ return {
 			},
 		},
 	},
+	-- Markdown
 
 	-- local plugins need to be explicitly configured with dir
 	-- { dir = "~/git/moonbow.nvim" },
