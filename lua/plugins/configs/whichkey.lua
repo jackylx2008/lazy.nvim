@@ -151,6 +151,8 @@ local mappings = {
 		m = { ":MaximizerToggle<CR>", "Toggle Maximizer" },
 	},
 
+	-- TODO: 不知道为啥更新插件后没有SaveSession了，smart_quit工作不正常
+
 	-- s = {
 	-- 	name = "Session",
 	-- 	s = { "<cmd>Autosession save<cr>", "Save" },
