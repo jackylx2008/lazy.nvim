@@ -13,8 +13,8 @@ require("ui").load_ui_plugins()
 -- Random colorscheme
 local colorscheme_array = {
 	"gruvbox-material",
-	"github_dimmed",
-	"github_dark_default",
+	"github_dark_dimmed",
+	"github_dark_high_contrast",
 	"github_dark_colorblind",
 	"github_dark",
 	"everforest",
@@ -22,7 +22,6 @@ local colorscheme_array = {
 	"doom-one",
 	"catppuccin-mocha",
 	"catppuccin-macchiato",
-	"catppuccin-latte",
 	"catppuccin-frappe",
 	"catppuccin",
 	"carbonfox",
@@ -37,7 +36,11 @@ local colorscheme_array = {
 	"vscode",
 	"kanagawa",
 	"kanagawa-wave",
-	"kanagawa-lotus",
+	"kanagawa-dragon",
+}
+-- Favorite colorscheme
+local colorscheme_favorite = {
+	"kanagawa",
 	"kanagawa-dragon",
 }
 local colorscheme = colorscheme_array[math.random(1, #colorscheme_array)]

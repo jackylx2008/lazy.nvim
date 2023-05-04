@@ -14,8 +14,8 @@ local function open_neo_tree()
 end
 
 local opts = {
-	log_level = "info",
-	auto_session_enable_last_session = false,
+	log_level = "error",
+	auto_session_enable_last_session = nil,
 	auto_session_root_dir = vim.fn.stdpath("data") .. "/sessions/",
 	auto_session_enabled = true,
 	auto_save_enabled = nil,
@@ -24,6 +24,10 @@ local opts = {
 	auto_session_use_git_branch = nil,
 	-- the configs below are lua only
 	bypass_session_save_file_types = { "alpha" },
+	session_lens = {
+		theme_conf = { border = true },
+		previewer = false,
+	},
 	pre_save_cmds = {
 		close_neo_tree,
 	},

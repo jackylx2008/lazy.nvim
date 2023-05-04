@@ -92,7 +92,8 @@ local mappings = {
 	["b"] = { "<cmd>lua require('user.bfs').open()<cr>", "Buffers" },
 	["e"] = { "<cmd>Neotree toggle<cr>", "Explorer" },
 	["nv"] = { "<cmd>Navbuddy<cr>", "Navbuddy" },
-	["q"] = { '<cmd>lua require("user.functions").smart_quit()<CR>', "Quit" },
+	-- ["q"] = { '<cmd>lua require("user.functions").smart_quit()<CR>', "Quit" },
+	["q"] = { "<cmd>wq!<cr>", "Quit" },
 	["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
 	["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
 	["gy"] = "Open code in Browser",
@@ -150,14 +151,14 @@ local mappings = {
 		m = { ":MaximizerToggle<CR>", "Toggle Maximizer" },
 	},
 
-	s = {
-		name = "Session",
-		s = { "<cmd>SaveSession<cr>", "Save" },
-		r = { "<cmd>RestoreSession<cr>", "Restore" },
-		x = { "<cmd>DeleteSession<cr>", "Delete" },
-		f = { "<cmd>Autosession search<cr>", "Find" },
-		d = { "<cmd>Autosession delete<cr>", "Find Delete" },
-	},
+	-- s = {
+	-- 	name = "Session",
+	-- 	s = { "<cmd>Autosession save<cr>", "Save" },
+	-- 	r = { "<cmd>Autosession restore<cr>", "Restore" },
+	-- 	x = { "<cmd>Autosession delete<cr>", "Delete" },
+	-- 	f = { "<cmd>Autosession search<cr>", "Find" },
+	-- 	-- d = { "<cmd>Autosession delete<cr>", "Find Delete" },
+	-- },
 
 	r = {
 		name = "Replace",
@@ -186,6 +187,7 @@ local mappings = {
 		f = { "<cmd>Telescope find_files<cr>", "Find File" },
 		t = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
 		s = { "<cmd>Telescope grep_string theme=ivy<cr>", "Find String" },
+		S = { "<cmd>lua require('auto-session.session-lens').search_session()<cr>", "Find session" },
 		n = { "<cmd>Telescope notify theme=ivy<cr>", "List notice" },
 		h = { "<cmd>Telescope help_tags<cr>", "Help" },
 		i = { "<cmd>lua require('telescope').extensions.media_files.media_files()<cr>", "Media" },
