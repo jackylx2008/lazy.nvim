@@ -28,6 +28,13 @@ return {
 	{ "folke/tokyonight.nvim", opts = { style = "moon" } },
 	{ "projekt0n/github-nvim-theme", theme_style = "dark_default" },
 	{ "sainnhe/gruvbox-material" },
+	-- Statusline
+	{
+		"nvim-lualine/lualine.nvim",
+		config = function()
+			require("plugins.configs.lualine")
+		end,
+	},
 	-- Whichkey
 	{
 		"folke/which-key.nvim",
@@ -49,17 +56,6 @@ return {
 		"tiagovla/scope.nvim",
 		config = true,
 	},
-	-- Buffer organizing
-	-- WARN: Someting wrong when using this plugin
-	-- {
-	-- 	"romgrk/barbar.nvim",
-	-- 	config = function()
-	-- 		require("plugins.configs.barbar")
-	-- 	end,
-	-- },
-
-	-- Buffer close
-	{ "moll/vim-bbye" },
 
 	-- Maximize splits
 	{ "szw/vim-maximizer" },
@@ -134,7 +130,7 @@ return {
 			require("plugins.configs.cmp")
 		end,
 	},
-	-- Shippets
+	-- Snippets
 	{
 		"L3MON4D3/LuaSnip",
 		dependencies = { "rafamadriz/friendly-snippets", "honza/vim-snippets" },
@@ -156,6 +152,11 @@ return {
 	-- Config for LSP Servers
 	{
 		"glepnir/lspsaga.nvim",
+		event = "LspAttach",
+		dependencies = {
+			--Please make sure you install markdown and markdown_inline parser
+			{ "nvim-treesitter/nvim-treesitter" },
+		},
 		config = function()
 			require("plugins.configs.lsp.lspsaga")
 		end,
@@ -202,12 +203,6 @@ return {
 		"lewis6991/gitsigns.nvim",
 		config = function()
 			require("plugins.configs.gitsigns")
-		end,
-	},
-	{
-		"f-person/git-blame.nvim",
-		config = function()
-			require("plugins.configs.git-blame")
 		end,
 	},
 	{
