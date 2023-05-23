@@ -28,13 +28,6 @@ return {
 	{ "folke/tokyonight.nvim", opts = { style = "moon" } },
 	{ "projekt0n/github-nvim-theme", theme_style = "dark_default" },
 	{ "sainnhe/gruvbox-material" },
-	-- Statusline
-	{
-		"nvim-lualine/lualine.nvim",
-		config = function()
-			require("plugins.configs.lualine")
-		end,
-	},
 	-- Whichkey
 	{
 		"folke/which-key.nvim",
@@ -246,7 +239,13 @@ return {
 		dependencies = { { "neovim/nvim-lspconfig" } },
 	},
 	{ "kshenoy/vim-signature" },
-
+	-- Statusline
+	{
+		"nvim-lualine/lualine.nvim",
+		config = function()
+			require("plugins.configs.lualine")
+		end,
+	},
 	-- Notification
 	{
 		"rcarriga/nvim-notify",

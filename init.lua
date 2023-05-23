@@ -8,40 +8,28 @@ vim.g.maplocalleader = " "
 
 require("user.lazy")
 -- require("user.colorscheme")
-require("ui").load_ui_plugins()
 
 -- Random colorscheme
-local colorscheme_array = {
-	"gruvbox-material",
-	"github_dark_dimmed",
-	"github_dark_high_contrast",
-	"github_dark_colorblind",
-	"github_dark",
-	"everforest",
-	"duskfox",
-	"doom-one",
-	"catppuccin-mocha",
-	"catppuccin-macchiato",
-	"catppuccin-frappe",
-	"catppuccin",
-	"carbonfox",
-	"OceanicNext",
-	"vscode",
-	"tokyonight-storm",
-	"tokyonight-night",
-	"tokyonight-moon",
-	"tokyonight",
-	"onedark",
-	"gruvbox-material",
-	"vscode",
-	"kanagawa",
-	"kanagawa-wave",
-	"kanagawa-dragon",
-}
 -- Favorite colorscheme
 local colorscheme_favorite = {
 	"kanagawa",
 	"kanagawa-dragon",
+	"kanagawa-wave",
+	"duskfox",
+	"github_dark_dimmed",
+	"OceanicNext",
+	"github_dark",
+	"catppuccin-mocha",
+	"catppuccin-macchiato",
+	"catppuccin-frappe",
+	"tokyonight",
+	"tokyonight-storm",
+	"tokyonight-night",
+	"tokyonight-moon",
+	"everforest", -- Error with indentline
+	"vscode", -- Error with indentline
+	"onedark", -- Error with indentline
+	"gruvbox-material", -- Error with indentline
 }
-local colorscheme = colorscheme_array[math.random(1, #colorscheme_array)]
+local colorscheme = colorscheme_favorite[math.random(1, #colorscheme_favorite)]
 vim.cmd.colorscheme(colorscheme)
