@@ -17,22 +17,22 @@ local colors = {
 	red = "#ec5f67",
 }
 
-local function separator()
-	return "%="
-end
+-- local function separator()
+-- 	return "%="
+-- end
 
 local function tab_stop()
 	return "" .. " " .. vim.bo.shiftwidth
 end
 
-local function show_macro_recording()
-	local rec_reg = vim.fn.reg_recording()
-	if rec_reg == "" then
-		return ""
-	else
-		return "recording @" .. rec_reg
-	end
-end
+-- local function show_macro_recording()
+-- 	local rec_reg = vim.fn.reg_recording()
+-- 	if rec_reg == "" then
+-- 		return ""
+-- 	else
+-- 		return "recording @" .. rec_reg
+-- 	end
+-- end
 
 local function lsp_client()
 	local buf_clients = vim.lsp.buf_get_clients()
