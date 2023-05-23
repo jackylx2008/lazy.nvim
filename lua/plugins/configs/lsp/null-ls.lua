@@ -20,6 +20,7 @@ null_ls.setup({
 		formatting.stylua, -- lua formatter
 		formatting.black.with({ extra_args = { "--fast" } }),
 		formatting.isort,
+		diagnostics.luacheck,
 		diagnostics.flake8,
 		diagnostics.markdownlint,
 		diagnostics.eslint_d.with({ -- js/ts linter
