@@ -21,7 +21,6 @@ local colorscheme_favorite = {
 	"github_dark",
 	"catppuccin-mocha",
 	"catppuccin-macchiato",
-	"catppuccin-frappe",
 	"tokyonight",
 	"tokyonight-storm",
 	"tokyonight-night",
