@@ -1,4 +1,4 @@
-local ls = require "luasnip"
+local ls = require("luasnip")
 local s = ls.snippet
 local t = ls.text_node
 local i = ls.insert_node
@@ -31,12 +31,12 @@ local fmt = require("luasnip.extras.fmt").fmt
 -- }
 
 local function bash(_, snip)
-  local file = io.popen(snip.trigger, "r")
-  local res = {}
-  for line in file:lines() do
-    table.insert(res, line)
-  end
-  return res
+	local file = io.popen(snip.trigger, "r")
+	local res = {}
+	for line in file:lines() do
+		table.insert(res, line)
+	end
+	return res
 end
 
 -- local calculate_comment_string = require("Comment.ft").calculate
@@ -140,86 +140,86 @@ end
 
 ---------------------------- Snippets  ------------------------------------------------
 local snippets = {
-  s({ trig = "ymd", name = "Current date", dscr = "Insert the current date" }, {
-    p(os.date, "%Y-%m-%d"),
-  }),
+	s({ trig = "ymd", name = "Current date", dscr = "Insert the current date" }, {
+		p(os.date, "%Y-%m-%d"),
+	}),
 
-  -- s({ trig = "pwd" }, { f(bash, {}) }),
+	-- s({ trig = "pwd" }, { f(bash, {}) }),
 
-  s("choice", { c(1, { t "choice 1", t "choice 2", t "choice 3" }) }),
+	s("choice", { c(1, { t("choice 1"), t("choice 2"), t("choice 3") }) }),
 
-  s(
-    "dt",
-    f(function()
-      return os.date "%D - %H:%M"
-    end)
-  ),
+	s(
+		"dt",
+		f(function()
+			return os.date("%D - %H:%M")
+		end)
+	),
 
-  s(
-    "fmt2",
-    fmt(
-      [[
+	s(
+		"fmt2",
+		fmt(
+			[[
     foo({1}, {3}) {{
         return {2} * {4}
       }}
     ]],
-      {
-        i(1, "x"),
-        rep(1),
-        i(2, "y"),
-        rep(2),
-      }
-    )
-  ),
+			{
+				i(1, "x"),
+				rep(1),
+				i(2, "y"),
+				rep(2),
+			}
+		)
+	),
 
-  s("yy", p(os.date, "%Y")),
+	s("yy", p(os.date, "%Y")),
 
-  s("link_url", {
-    t '<a href="',
-    f(function(_, snip)
-      -- TM_SELECTED_TEXT is a table to account for multiline-selections.
-      -- In this case only the first line is inserted.
-      return snip.env.TM_SELECTED_TEXT[1] or {}
-    end, {}),
-    t '">',
-    i(1),
-    t "</a>",
-    i(0),
-  }),
+	s("link_url", {
+		t('<a href="'),
+		f(function(_, snip)
+			-- TM_SELECTED_TEXT is a table to account for multiline-selections.
+			-- In this case only the first line is inserted.
+			return snip.env.TM_SELECTED_TEXT[1] or {}
+		end, {}),
+		t('">'),
+		i(1),
+		t("</a>"),
+		i(0),
+	}),
 
-  s("dn", {
-    t "from: ",
-    i(1),
-    t { "", "to: " },
-    d(2, function(args)
-      -- the returned snippetNode doesn't need a position; it's inserted
-      -- "inside" the dynamicNode.
-      return sn(nil, {
-        -- jump-indices are local to each snippetNode, so restart at 1.
-        i(1, args[1]),
-      })
-    end, {
-      1,
-    }),
-  }),
+	s("dn", {
+		t("from: "),
+		i(1),
+		t({ "", "to: " }),
+		d(2, function(args)
+			-- the returned snippetNode doesn't need a position; it's inserted
+			-- "inside" the dynamicNode.
+			return sn(nil, {
+				-- jump-indices are local to each snippetNode, so restart at 1.
+				i(1, args[1]),
+			})
+		end, {
+			1,
+		}),
+	}),
 
-  s(
-    "sn",
-    sn(1, {
-      t { "Select a choice : " },
-      c(1, { t "choice 1", t "choice 2", t "choice 3" }),
-    })
-  ),
-  s("mlink", {
-    t "[",
-    i(1),
-    t "](",
-    f(function(_, snip)
-      return snip.env.TM_SELECTED_TEXT[1] or {}
-    end, {}),
-    t ")",
-    i(0),
-  }),
+	s(
+		"sn",
+		sn(1, {
+			t({ "Select a choice : " }),
+			c(1, { t("choice 1"), t("choice 2"), t("choice 3") }),
+		})
+	),
+	s("mlink", {
+		t("["),
+		i(1),
+		t("]("),
+		f(function(_, snip)
+			return snip.env.TM_SELECTED_TEXT[1] or {}
+		end, {}),
+		t(")"),
+		i(0),
+	}),
 }
 
 -- local autosnippets = {

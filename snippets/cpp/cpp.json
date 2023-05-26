@@ -6,4 +6,25 @@
     ],
     "description": "Quickly type std::string setup in nvim/snippet"
   }
+  "string": {
+    "prefix": "to",
+    "body": [
+      "// TODO: "
+    ],
+    "description": "Quickly TODO setup in nvim/snippet"
+  }
+  "string": {
+    "prefix": "wa",
+    "body": [
+      "// WARN: "
+    ],
+    "description": "Quickly WARN setup in nvim/snippet"
+  }
+  "string": {
+    "prefix": "no",
+    "body": [
+      "// NOTE: "
+    ],
+    "description": "Quickly NOTE setup in nvim/snippet"
+  }
 }

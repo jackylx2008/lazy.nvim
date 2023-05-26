@@ -124,14 +124,15 @@ return {
 		end,
 	},
 	-- Snippets
+	{ "saadparwaiz1/cmp_luasnip" },
 	{
 		"L3MON4D3/LuaSnip",
 		dependencies = { "rafamadriz/friendly-snippets", "honza/vim-snippets" },
+		after = "nvim-cmp",
 		config = function()
 			require("snip").setup()
 		end,
 	},
-	{ "saadparwaiz1/cmp_luasnip" },
 
 	-- Manage and Install LSP servers
 	{ "williamboman/mason-lspconfig" },

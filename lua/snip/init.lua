@@ -175,7 +175,7 @@ function M.setup()
 
 	ls.filetype_extend("all", { "_" })
 
-	-- Load custom typescript snippets
+	-- Load custom snippets
 	require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snippets/cpp" } })
 	require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snippets/python" } })
 	require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snippets/markdown" } })

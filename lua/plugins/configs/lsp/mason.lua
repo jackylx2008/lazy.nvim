@@ -62,6 +62,8 @@ mason_null_ls.setup({
 		"flake8", -- python linter
 		"isort", -- python import sort
 		"markdownlint", -- Markdown
+		"cpplint", -- c/cpp linter
+		"clang_format", -- c/cpp formatter
 	},
 	-- auto-install configured formatters & linters (with null-ls)
 	automatic_installation = true,

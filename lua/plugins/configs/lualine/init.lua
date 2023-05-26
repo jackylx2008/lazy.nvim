@@ -48,14 +48,22 @@ local function list_registered_providers_names(filetype)
 end
 
 local function lsp_client(msg)
-	local buf_clients = vim.lsp.get_active_clients({ bufnr = 0 })
-	if #buf_clients == 0 then
-		return "LSP Inactive"
+	-- local buf_clients = vim.lsp.get_active_clients({ bufnr = 0 })
+	-- if #buf_clients == 0 then
+	-- 	return "LSP Inactive"
+	-- end
+	msg = msg or ""
+	local buf_clients = vim.lsp.buf_get_clients()
+	if next(buf_clients) == nil then
+		if type(msg) == "boolean" or #msg == 0 then
+			return "LSP Inactive"
+		end
+		return msg
 	end
-
 	local buf_ft = vim.bo.filetype
-	local buf_client_names = {}
+	-- local buf_client_names = {}
 	local copilot_active = false
+	local registered_providers = list_registered_providers_names(buf_ft)
 
 	-- add client
 	for _, client in pairs(buf_clients) do
@@ -68,7 +76,6 @@ local function lsp_client(msg)
 		end
 	end
 
-	local registered_providers = list_registered_providers_names(buf_ft)
 	-- add formatter
 	local method_formatting = require("null-ls").methods.FORMATTING
 	local registered_formatters = registered_providers[method_formatting]
@@ -115,17 +122,14 @@ local config = {
 	},
 	sections = {
 		lualine_a = { "mode" },
-		lualine_b = { "branch", components.diff, "diagnostics" },
+		lualine_b = { components.branch, components.diff, components.diagnostics },
 		lualine_c = {
 			components.python_env, -- WARN: Do not work yet
 			{
-				-- colored = false,
+				colored = false,
 				lsp_client,
 				icon = "",
 				color = { fg = colors.violet, gui = "bold" },
-				-- on_click = function()
-				-- 	vim.cmd([[LspInfo]])
-				-- end,
 			},
 		},
 		lualine_x = { "filename", { tab_stop }, "encoding", "fileformat", "filetype" },
@@ -140,7 +144,7 @@ local config = {
 		lualine_a = {},
 		lualine_b = {},
 		lualine_c = { "filename" },
-		lualine_x = { "location" },
+		lualine_x = { components.location },
 		lualine_y = {},
 		lualine_z = {},
 	},

@@ -54,6 +54,7 @@ for type, icon in pairs(signs) do
 end
 
 -- configure clangd server
+capabilities.offsetEncoding = { "utf-16" } -- to avoid multi server warning in c/cpp file
 lspconfig["clangd"].setup({
 	capabilities = capabilities,
 	on_attach = on_attach,

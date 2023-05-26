@@ -19,8 +19,17 @@ null_ls.setup({
 		formatting.prettier, -- js/ts formatter
 		formatting.stylua, -- lua formatter
 		formatting.black.with({ extra_args = { "--fast" } }),
+		formatting.clang_format,
 		formatting.isort,
 		diagnostics.luacheck,
+		diagnostics.cpplint.with({
+			-- Get rid of warnings
+			args = {
+				"--filter=-legal/copyright,-readability/todo,-whitespace/comments,-whitespace/indent",
+				"$FILENAME",
+			},
+			-- WARN: "an else should appear on the same line as the preceding"
+		}),
 		diagnostics.flake8,
 		diagnostics.markdownlint,
 		diagnostics.eslint_d.with({ -- js/ts linter
