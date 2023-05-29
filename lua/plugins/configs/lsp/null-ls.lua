@@ -25,7 +25,7 @@ null_ls.setup({
 		diagnostics.cpplint.with({
 			-- Get rid of warnings
 			args = {
-				"--filter=-legal/copyright,-readability/todo,-whitespace/comments,-whitespace/indent",
+				"--filter=-legal/copyright,-readability/todo,-whitespace/comments,-whitespace/indent,-build/c++11,-build/namespaces",
 				"$FILENAME",
 			},
 			-- WARN: "an else should appear on the same line as the preceding"
