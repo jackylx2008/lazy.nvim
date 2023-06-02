@@ -61,7 +61,7 @@ local function lsp_client(msg)
 		return msg
 	end
 	local buf_ft = vim.bo.filetype
-	-- local buf_client_names = {}
+	local buf_client_names = {}
 	local copilot_active = false
 	local registered_providers = list_registered_providers_names(buf_ft)
 
