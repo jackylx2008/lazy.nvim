@@ -13,7 +13,7 @@ local nvim_web_devicons = require("nvim-web-devicons")
 local cdir = vim.fn.getcwd()
 
 local function getGreeting(name)
-	local datetime = os.date("  %Y-%m-%d %H:%M:%S\n")
+	local datetime = os.date("%Y-%m-%d %H:%M:%S")
 	local tableTime = os.date("*t")
 	local hour = tableTime.hour
 	local greetingsTable = {

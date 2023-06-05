@@ -195,7 +195,7 @@ local mappings = {
 		i = { "<cmd>lua require('telescope').extensions.media_files.media_files()<cr>", "Media" },
 		l = { "<cmd>Telescope resume<cr>", "Last Search" },
 		M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
-		r = { "<cmd>Telescope oldfiles<cr>", "Recent File" },
+		O = { "<cmd>Telescope oldfiles<cr>", "Old Files" },
 		R = { "<cmd>Telescope registers<cr>", "Registers" },
 		k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
 		C = { "<cmd>Telescope commands<cr>", "Commands" },
@@ -237,7 +237,7 @@ local mappings = {
 	l = {
 		name = "LSP",
 		a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
-		d = { "<cmd>TroubleToggle<cr>", "Diagnostics" },
+		-- d = { "<cmd>TroubleToggle<cr>", "Diagnostics" },
 		w = {
 			"<cmd>Telescope lsp_workspace_diagnostics<cr>",
 			"Workspace Diagnostics",
