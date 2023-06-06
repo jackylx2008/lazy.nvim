@@ -7,6 +7,7 @@ end
 -- for conciseness
 local formatting = null_ls.builtins.formatting -- to setup formatters
 local diagnostics = null_ls.builtins.diagnostics -- to setup linters
+local hover = null_ls.builtins.hover
 -- to setup format on savrstere
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
@@ -14,8 +15,7 @@ local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 null_ls.setup({
 	-- setup formatters & linters
 	sources = {
-		--  to disable file types use
-		--  "formatting.prettier.with({disabled_filetypes: {}})" (see null-ls docs)
+		--  to disable file types use "formatting.prettier.with({disabled_filetypes: {}})" (see null-ls docs)
 		formatting.prettier, -- js/ts formatter
 		formatting.stylua, -- lua formatter
 		formatting.black.with({ extra_args = { "--fast" } }),
@@ -38,6 +38,7 @@ null_ls.setup({
 				return utils.root_has_file(".eslintrc.js") -- change file extension if you use something else
 			end,
 		}),
+		hover.dictionary,
 	},
 	-- configure format on save
 	on_attach = function(current_client, bufnr)
