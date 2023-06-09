@@ -89,16 +89,29 @@ local m_opts = {
 
 local mappings = {
 	["/"] = { "<Plug>(comment_toggle_linewise_current)", "Comment" },
-	["b"] = { "<cmd>lua require('user.bfs').open()<cr>", "Buffers" },
 	["e"] = { "<cmd>Neotree toggle<cr>", "Explorer" },
 	["nv"] = { "<cmd>Navbuddy<cr>", "Navbuddy" },
 	-- ["q"] = { '<cmd>lua require("user.functions").smart_quit()<CR>', "Quit" },
 	["q"] = { "<cmd>wq!<cr>", "Quit" },
-	["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
 	["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
 	["gy"] = "Open code in Browser",
 	["."] = "Goto next harpoon",
 	[","] = "Goto next harpoon",
+
+	b = {
+		name = "Buffer",
+		["b"] = { "<cmd>lua require('user.bfs').open()<cr>", "Buffers" },
+		["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
+	},
+
+	c = {
+		name = "Code action & Diagnostic",
+		["a"] = { "<cmd>Lspsaga code_action<CR>", "Code action" }, -- see available code actions
+		["d"] = { "<cmd>Lspsaga show_cursor_diagnostics<CR>", "Show cursor diagnostics" }, -- show diagnostics for cursor
+		["l"] = { "<cmd>Lspsaga show_line_diagnostics<CR>", "Show line diagnostics" }, -- show  diagnostics for line
+		["K"] = { "<cmd>Lspsaga hover_doc<CR>", "Hover doc" }, -- show documentation for what is under cursor
+		["o"] = { "<cmd>LSoutlineToggle<CR>", "LSoutlineToggle" }, -- see outline on right hand side
+	},
 
 	u = {
 		name = "TodoComments",
@@ -167,6 +180,7 @@ local mappings = {
 		r = { "<cmd>lua require('spectre').open()<cr>", "Replace" },
 		w = { "<cmd>lua require('spectre').open_visual({select_word=true})<cr>", "Replace Word" },
 		f = { "<cmd>lua require('spectre').open_file_search()<cr>", "Replace Buffer" },
+		n = { "<cmd>Lspsaga rename<CR>", "Rename" },
 	},
 
 	d = {
