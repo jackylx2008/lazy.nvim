@@ -1,16 +1,11 @@
--- require("user.keymaps")
--- require("user.options")
-require("user.functions")
-require("user.globals")
-
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+require("user.functions")
+require("user.globals")
 require("user.lazy")
--- require("user.colorscheme")
 
 -- Random colorscheme
--- Favorite colorscheme
 local colorscheme_favorite = {
 	"kanagawa",
 	"kanagawa-dragon",
