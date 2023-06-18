@@ -194,6 +194,7 @@ local mappings = {
 		l = { "<cmd>lua require'dap'.run_last()<cr>", "Last" },
 		u = { "<cmd>lua require'dapui'.toggle()<cr>", "UI" },
 		x = { "<cmd>lua require'dap'.terminate()<cr>", "Exit" },
+		p = { "<cmd>lua require('dap-python').test_method()<cr>", "Debug python" },
 	},
 
 	f = {

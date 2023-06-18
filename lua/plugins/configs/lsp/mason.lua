@@ -65,6 +65,7 @@ mason_null_ls.setup({
 		"markdownlint", -- Markdown
 		"cpplint", -- c/cpp linter
 		"clang_format", -- c/cpp formatter
+		"debugpy",
 	},
 	-- auto-install configured formatters & linters (with null-ls)
 	automatic_installation = true,

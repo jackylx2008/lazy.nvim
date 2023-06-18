@@ -58,6 +58,7 @@ lspconfig["clangd"].setup({
 lspconfig["pyright"].setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
+	filetype = { "python" },
 })
 
 -- configure markdown server

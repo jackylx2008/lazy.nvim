@@ -1,4 +1,5 @@
 -- local api = vim.api
+
 local g = vim.g
 local opt = vim.opt
 -- local cmd = vim.cmd
@@ -46,8 +47,6 @@ local options = {
 	updatetime = 100, -- Faster completion
 	timeoutlen = 200, -- By default timeoutlen is 1000 ms
 
-	-- formatoptions-=cro                -- Stop newline continution of comments
-
 	clipboard = "unnamedplus", -- Copy paste between vim and everything else app之间共享剪贴板
 
 	cursorline = true, -- 突出显示当前行
@@ -85,8 +84,6 @@ vim.opt.termguicolors = true -- 设置采用True color
 
 vim.cmd("set whichwrap+=<,>,[,],h,l")
 vim.cmd([[set iskeyword+=-]])
--- vim.cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to work
--- vim.opt_local.formatoptions = vim.opt_local.formatoptions - {"c", "r", "o"}
 
 vim.cmd("filetype plugin indent on") -- 根据语言设置不同的缩进
 -- vim.opt.iskeyword:append({"-"}) -- treat dash separated words as a word text objec 字母含有'-'认为是一个单词

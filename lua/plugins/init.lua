@@ -499,8 +499,42 @@ return {
 			},
 		},
 	},
-	-- Markdown
+	-- TODO: Markdown
 
-	-- local plugins need to be explicitly configured with dir
-	-- { dir = "~/git/moonbow.nvim" },
+	-- DAP
+	{
+		"rcarriga/nvim-dap-ui",
+		dependencies = {
+			"mfussenegger/nvim-dap",
+		},
+		config = function()
+			local dap = require("dap")
+			local dap_ui = require("dapui")
+			dap_ui.setup()
+			dap.listeners.after.event_initialized["dapui_config"] = function()
+				dap_ui.open()
+			end
+			dap.listeners.before.event_terminated["dapui_config"] = function()
+				dap_ui.open()
+			end
+			dap.listeners.before.event_exited["dapui_config"] = function()
+				dap_ui.open()
+			end
+		end,
+	},
+	{
+		"mfussenegger/nvim-dap",
+	},
+	{
+		"mfussenegger/nvim-dap-python",
+		ft = "python",
+		dependencies = {
+			"mfussenegger/nvim-dap",
+			"rcarriga/nvim-dap-ui",
+		},
+		config = function(_, opts)
+			local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
+			require("dap-python").setup(path)
+		end,
+	},
 }

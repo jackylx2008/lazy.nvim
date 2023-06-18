@@ -23,7 +23,7 @@ null_ls.setup({
 		formatting.isort,
 		diagnostics.luacheck,
 		diagnostics.cpplint.with({
-			-- Get rid of warnings
+			-- Get rid of warningss
 			args = {
 				"--filter=-legal/copyright,-readability/todo,-whitespace/comments,-whitespace/indent,-build/c++11,-build/namespaces",
 				"$FILENAME",
