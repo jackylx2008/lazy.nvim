@@ -61,14 +61,6 @@ return {
 		end,
 	},
 
-	-- Comment stuff
-	{
-		"numToStr/Comment.nvim",
-		config = function()
-			require("plugins.configs.comment")
-		end,
-	},
-
 	-- Icons
 	{
 		"kyazdani42/nvim-web-devicons",
@@ -163,6 +155,14 @@ return {
 		end,
 	},
 
+	-- Comment Must after treesitter-textobjects
+	{
+		"numToStr/Comment.nvim",
+		config = function()
+			require("plugins.configs.comment")
+		end,
+	},
+
 	-- Formatting
 	{ "jayp0521/mason-null-ls.nvim" },
 	{
@@ -173,6 +173,11 @@ return {
 	},
 
 	-- Treesitter
+	{
+		"nvim-treesitter/nvim-treesitter-textobjects",
+		after = "nvim-treesitter",
+		requires = "nvim-treesitter/nvim-treesitter",
+	},
 	{
 		"nvim-treesitter/nvim-treesitter",
 		config = function()
