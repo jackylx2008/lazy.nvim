@@ -537,8 +537,14 @@ return {
 			"mfussenegger/nvim-dap",
 			"rcarriga/nvim-dap-ui",
 		},
-		config = function(_, opts)
-			local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
+		config = function()
+			local path = ""
+			local system = vim.loop.os_uname().sysname
+			if system == "Windows_NT" then
+				path = "C:/Users/bcjt_/AppData/Local/nvim-data/mason/packages/debugpy/venv/Scripts/python.exe"
+			elseif system == "Darwin" then
+				path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
+			end
 			require("dap-python").setup(path)
 		end,
 	},
