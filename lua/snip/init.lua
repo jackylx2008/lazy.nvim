@@ -8,31 +8,44 @@ function M.setup()
 	ls.config.set_config({
 		history = true,
 		updateevents = "TextChanged,TextChangedI",
-		enable_autosnippets = false,
+		enable_autosnippets = true,
 
-		-- ext_opts = {
-		--   [types.choiceNode] = {
-		--     active = {
-		--       virt_text = { { "<-", "Error" } },
-		--     },
-		--   },
-		-- },
 		store_selection_keys = "<C-q>",
 		ext_opts = {
 			[types.choiceNode] = {
 				active = {
-					-- virt_text = { { "●", "GruvboxOrange" } },
-					virt_text = { { "", "GruvboxOrange" } },
+					virt_text = { { "●", "GruvboxOrange" } },
 				},
 			},
 			[types.insertNode] = {
 				active = {
-					-- virt_text = { { "●", "GruvboxBlue" } },
-					virt_text = { { "", "GruvboxBlue" } },
+					virt_text = { { "", "GruvboxBlue" } },
 				},
 			},
 		},
 	})
+
+	-- key maps
+	vim.keymap.set({ "i", "s" }, "<a-j>", function()
+		if ls.jumpable(1) then
+			ls.jump(1)
+		end
+	end)
+	vim.keymap.set({ "i", "s" }, "<a-k>", function()
+		if ls.jumpable(-1) then
+			ls.jump(-1)
+		end
+	end)
+	vim.keymap.set({ "i", "s" }, "<a-l>", function()
+		if ls.choice_active() then
+			ls.change_choice(1)
+		end
+	end)
+	vim.keymap.set({ "i", "s" }, "<a-h>", function()
+		if ls.choice_active() then
+			ls.change_choice(-1)
+		end
+	end)
 
 	-- _G.snippets_clear()
 

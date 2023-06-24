@@ -106,6 +106,15 @@ local snippets = {
 			i(1, "module"),
 		})
 	),
+	s("mysnip", { t("My test snippet:"), i(1, " insert node"), t({ "", "End snippet" }) }),
+	s(
+		"fmtsnip",
+		fmt("local {}, function({})\n  {}\nend", {
+			i(1, "Var"),
+			c(2, { t(""), t("Arg") }),
+			i(3, "-- Code"),
+		})
+	),
 	-- s("doc", {
 	--   t "--- ",
 	--   i(1, "Function description."),
