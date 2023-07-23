@@ -48,6 +48,7 @@ for type, icon in pairs(signs) do
 end
 
 -- configure clangd server
+-- touch compile_flags.txt and add std=c++17 to clarify std
 capabilities.offsetEncoding = { "utf-16" } -- to avoid multi server warning in c/cpp file
 lspconfig["clangd"].setup({
 	capabilities = capabilities,
@@ -55,10 +56,20 @@ lspconfig["clangd"].setup({
 })
 
 -- configure pyright server
+local python_env = {}
+if vim.loop.os_uname().sysname == "Darwin" then
+	-- custom settings for mac
+	python_env = {
+		pythonPath = "/usr/local/bin/python3",
+	}
+end
 lspconfig["pyright"].setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
 	filetype = { "python" },
+	settings = {
+		python = python_env,
+	},
 })
 
 -- configure markdown server

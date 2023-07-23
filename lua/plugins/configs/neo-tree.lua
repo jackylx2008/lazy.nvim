@@ -11,11 +11,19 @@ neo_tree.setup({
 	source_selector = {
 		winbar = true,
 		content_layout = "center",
-		tab_labels = {
-			filesystem = " File",
-			buffers = "➜ Buffs",
-			git_status = " Git",
-			diagnostics = "",
+		sources = {
+			{
+				source = "filesystem", -- string
+				display_name = " Files ", -- string | nil
+			},
+			{
+				source = "buffers", -- string
+				display_name = " Buffers", -- string | nil
+			},
+			{
+				source = "git_status", -- string
+				display_name = " Git ", -- string | nil
+			},
 		},
 	},
 	default_component_configs = {
