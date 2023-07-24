@@ -30,7 +30,12 @@ null_ls.setup({
 			},
 			-- WARN: "an else should appear on the same line as the preceding"
 		}),
-		diagnostics.flake8,
+		diagnostics.flake8.with({
+			-- Get rid of Errors:whitespace after ":"
+			args = {
+				"--ignore=E203,",
+			},
+		}),
 		diagnostics.markdownlint,
 		diagnostics.eslint_d.with({ -- js/ts linter
 			-- only enable eslint if root has .eslintrc.js (not in youtube nvim video)
