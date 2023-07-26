@@ -15,6 +15,10 @@ git clone https://github.com/jackylx2008/lazy.nvim.git ~/.config/nvim
 
 ## 更新记录
 
+### 2023-07-26 14:58
+
+`harpoon` 和 `auto-session` 考虑是否删除
+
 ### 2023-03-14 11:00
 
 - 因为`packer`在`Mac`上进行插件管理时一直存在问题，在`github`上这个问题一直没得到解决，似乎原作者对维护这个项目不那么上心。偶然发现了新的插件管理器`lazy.nvim`，经过对比有更好的界面同时更新维护积极，所以准备第 N 次重启`nvim`的配置

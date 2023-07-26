@@ -72,18 +72,26 @@ return {
 	-- Telescope, Fzfinder
 	{
 		"nvim-telescope/telescope.nvim",
+		dependencies = {
+			"nvim-telescope/telescope-media-files.nvim",
+			"nvim-telescope/telescope-fzf-native.nvim",
+		},
+		-- cmd = {
+		-- 	"Telescope",
+		-- 	"Telescope harpoon marks",
+		-- 	"lua require('auto-session.session-lens').search_session()",
+		-- 	"lua require('telescope').extensions.media_files.media_files()",
+		-- },
 		config = function()
 			require("plugins.configs.telescope")
 		end,
 	},
-	{ "nvim-telescope/telescope-media-files.nvim" },
-	{ "nvim-telescope/telescope-fzf-native.nvim" },
-	{
-		"ahmedkhalf/project.nvim",
-		config = function()
-			require("plugins.configs.project")
-		end,
-	},
+	-- {
+	-- 	"ahmedkhalf/project.nvim",
+	-- 	config = function()
+	-- 		require("plugins.configs.project")
+	-- 	end,
+	-- },
 	-- Only work on Linux and MacOS
 	{ "ibhagwan/fzf-lua" },
 
@@ -96,60 +104,89 @@ return {
 	},
 
 	-- Auto completions
-	{ "hrsh7th/cmp-nvim-lsp" },
-	{ "hrsh7th/cmp-buffer" }, -- buffer completions
-	{ "hrsh7th/cmp-path" }, -- path completions
-	{ "hrsh7th/cmp-cmdline" }, -- cmdline completions
-	{ "hrsh7th/cmp-emoji" },
-	{ "hrsh7th/cmp-nvim-lua" },
-	-- {
-	-- 	"f3fora/cmp-spell",
-	-- 	config = function()
-	-- 		vim.opt.spell = true
-	-- 		vim.opt.spelllang = { "ex_us" }
-	-- 	end,
-	-- },
 	{
 		"hrsh7th/nvim-cmp",
+		event = { "BufReadPost", "BufNewFile" },
+		dependencies = {
+			{
+				{ "hrsh7th/cmp-nvim-lsp" },
+				{ "hrsh7th/cmp-buffer" }, -- buffer completions
+				{ "hrsh7th/cmp-path" }, -- path completions
+				{ "hrsh7th/cmp-cmdline" }, -- cmdline completions
+				{ "hrsh7th/cmp-emoji" },
+				{ "hrsh7th/cmp-nvim-lua" },
+				-- {
+				-- 	"f3fora/cmp-spell",
+				-- 	config = function()
+				-- 		vim.opt.spell = true
+				-- 		vim.opt.spelllang = { "ex_us" }
+				-- 	end,
+				-- },
+				-- Snippets
+				{ "saadparwaiz1/cmp_luasnip" },
+				{
+					"L3MON4D3/LuaSnip",
+					dependencies = { "rafamadriz/friendly-snippets", "honza/vim-snippets" },
+					after = "nvim-cmp",
+					config = function()
+						require("snip").setup()
+					end,
+				},
+				{
+					"SmiteshP/nvim-navbuddy",
+					dependencies = {
+						{
+							-- A simple statusline/winbar component that uses LSP to show your current code context
+							"SmiteshP/nvim-navic",
+							config = function()
+								require("plugins.configs.navic")
+							end,
+						},
+						"MunifTanjim/nui.nvim",
+					},
+					opts = { lsp = { auto_attach = true } },
+					cmd = "Navbuddy",
+				},
+			},
+		},
 		config = function()
 			require("plugins.configs.cmp")
 		end,
 	},
-	-- Snippets
-	{ "saadparwaiz1/cmp_luasnip" },
-	{
-		"L3MON4D3/LuaSnip",
-		dependencies = { "rafamadriz/friendly-snippets", "honza/vim-snippets" },
-		after = "nvim-cmp",
-		config = function()
-			require("snip").setup()
-		end,
-	},
-
-	-- Manage and Install LSP servers
-	{ "williamboman/mason-lspconfig" },
-	{
-		"williamboman/mason.nvim",
-		config = function()
-			require("plugins.configs.lsp.mason")
-		end,
-	},
 
 	-- Config for LSP Servers
-	{
-		"glepnir/lspsaga.nvim",
-		event = "LspAttach",
-		dependencies = {
-			--Please make sure you install markdown and markdown_inline parser
-			{ "nvim-treesitter/nvim-treesitter" },
-		},
-		config = function()
-			require("plugins.configs.lsp.lspsaga")
-		end,
-	},
 	{ "onsails/lspkind.nvim" },
 	{
 		"neovim/nvim-lspconfig",
+		cmd = { "Mason", "Neoconf" },
+		event = { "BufReadPost", "BufNewFile" },
+		dependencies = {
+			{
+				-- Manage and Install LSP servers
+				"williamboman/mason.nvim",
+				config = function()
+					require("plugins.configs.lsp.mason")
+				end,
+			},
+			"williamboman/mason-lspconfig",
+			"folke/neoconf.nvim",
+			"folke/neodev.nvim",
+			{
+				"j-hui/fidget.nvim",
+				tag = "legacy",
+			},
+			{
+				"nvimdev/lspsaga.nvim",
+				event = "LspAttach",
+				dependencies = {
+					--Please make sure you install markdown and markdown_inline parser
+					{ "nvim-treesitter/nvim-treesitter" },
+				},
+				config = function()
+					require("plugins.configs.lsp.lspsaga")
+				end,
+			},
+		},
 		config = function()
 			require("plugins.configs.lsp.lspconfig")
 		end,
@@ -191,6 +228,7 @@ return {
 	-- Auto closing
 	{
 		"windwp/nvim-autopairs",
+		event = "VeryLazy",
 		config = function()
 			require("plugins.configs.autopairs")
 		end,
@@ -237,13 +275,6 @@ return {
 		end,
 	},
 	-- A simple statusline/winbar component that uses LSP to show your current code context
-	{
-		"SmiteshP/nvim-navic",
-		config = function()
-			require("plugins.configs.navic")
-		end,
-		dependencies = { { "neovim/nvim-lspconfig" } },
-	},
 	{ "kshenoy/vim-signature" },
 	-- Statusline
 	{
@@ -323,6 +354,7 @@ return {
 	-- Spectre: Better find and replace
 	{
 		"windwp/nvim-spectre",
+		cmd = "Spectre",
 		config = function()
 			require("plugins.configs.spectre")
 		end,
@@ -391,15 +423,6 @@ return {
 			config = function()
 				require("plugins.configs.indentblankline")
 			end,
-		},
-	},
-	--Naviagate
-	{
-		"SmiteshP/nvim-navbuddy",
-		dependencies = {
-			"neovim/nvim-lspconfig",
-			"SmiteshP/nvim-navic",
-			"MunifTanjim/nui.nvim",
 		},
 	},
 	-- Diffview
