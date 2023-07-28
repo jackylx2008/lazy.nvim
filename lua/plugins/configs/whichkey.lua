@@ -95,8 +95,8 @@ local mappings = {
 	["q"] = { "<cmd>wq!<cr>", "Quit" },
 	-- ["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
 	["gy"] = "Open code in Browser",
-	["."] = "Goto next harpoon",
-	[","] = "Goto next harpoon",
+	-- ["."] = "Goto next harpoon",
+	-- [","] = "Goto next harpoon",
 
 	b = {
 		name = "Buffer",
