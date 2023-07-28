@@ -5,6 +5,7 @@ return {
 		branch = "v2.x",
 		module = "neo-tree",
 		cmd = "Neotree",
+		event = "VeryLazy",
 		dependencies = {
 			{ "MunifTanjim/nui.nvim", module = "nui" },
 			"nvim-lua/plenary.nvim",
@@ -384,18 +385,17 @@ return {
       { "S", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
       { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
       { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-      { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+      { "<c-r>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
     },
 	},
 	{
 		"abecodes/tabout.nvim",
 		dependencies = { "nvim-cmp" },
+		event = "VeryLazy",
 		config = function()
 			require("tabout").setup({
-				-- tabkey = "<C-t>",
-				-- backwards_tabkey = "<C-d>",
 				tabkey = "<leader>.",
-				backwards_tabkey = "<C-d>",
+				backwards_tabkey = "<leader>,",
 				default_tab = "<Tab>",
 				default_shift_tab = "<S-Tab>",
 				completion = false,
