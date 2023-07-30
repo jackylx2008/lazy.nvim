@@ -27,7 +27,7 @@ local setup = {
 	-- to enable all native operators, set the preset / operators plugin above
 	operators = { gc = "Comments" },
 	key_labels = {
-		-- override the label used to display some keys. It doesn't effect WK in any other way.
+		-- override the label used to dis/play some keys. It doesn't effect WK in any other way.
 		-- For example:
 		-- ["<space>"] = "SPC",
 		-- ["<cr>"] = "RET",
@@ -143,6 +143,7 @@ local mappings = {
 		s = { "<cmd>Lazy sync<cr>", "Sync" },
 		u = { "<cmd>Lazy update<cr>", "Update" },
 		r = { "<cmd>Lazy restore<cr>", "Restore" },
+		p = { "<cmd>Lazy profile<cr>", "Profile" },
 		l = { "<cmd>Lazy<cr>", "Lazy" },
 	},
 
@@ -199,21 +200,22 @@ local mappings = {
 
 	f = {
 		name = "Find",
-		b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
-		c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
-		f = { "<cmd>Telescope find_files<cr>", "Find File" },
-		t = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
-		s = { "<cmd>Telescope grep_string theme=ivy<cr>", "Find String" },
-		S = { "<cmd>lua require('auto-session.session-lens').search_session()<cr>", "Find session" },
-		n = { "<cmd>Telescope notify theme=ivy<cr>", "List notice" },
-		h = { "<cmd>Telescope help_tags<cr>", "Help" },
-		i = { "<cmd>lua require('telescope').extensions.media_files.media_files()<cr>", "Media" },
-		l = { "<cmd>Telescope resume<cr>", "Last Search" },
-		M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
-		O = { "<cmd>Telescope oldfiles<cr>", "Old Files" },
-		R = { "<cmd>Telescope registers<cr>", "Registers" },
-		k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
-		C = { "<cmd>Telescope commands<cr>", "Commands" },
+		-- b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
+		b = { "<cmd>Telescope buffers<cr>", "[B]uffers" },
+		c = { "<cmd>Telescope colorscheme<cr>", "[C]olorscheme" },
+		f = { "<cmd>Telescope find_files<cr>", "[F]ind File" },
+		t = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find [T]ext" },
+		s = { "<cmd>Telescope grep_string theme=ivy<cr>", "Find [S]tring" },
+		S = { "<cmd>lua require('auto-session.session-lens').search_session()<cr>", "Find [s]ession" },
+		n = { "<cmd>Telescope notify theme=ivy<cr>", "List [n]otice" },
+		h = { "<cmd>Telescope help_tags<cr>", "[H]elp" },
+		i = { "<cmd>lua require('telescope').extensions.media_files.media_files()<cr>", "Med[i]a" },
+		l = { "<cmd>Telescope resume<cr>", "[L]ast Search" },
+		M = { "<cmd>Telescope man_pages<cr>", "[M]an Pages" },
+		O = { "<cmd>Telescope oldfiles<cr>", "[O]ld Files" },
+		R = { "<cmd>Telescope registers<cr>", "[R]egisters" },
+		k = { "<cmd>Telescope keymaps<cr>", "[K]eymaps" },
+		C = { "<cmd>Telescope commands<cr>", "[C]ommands" },
 	},
 
 	g = {

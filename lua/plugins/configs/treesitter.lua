@@ -31,7 +31,7 @@ treesitter.setup({
 		-- "yaml",
 		-- "html",
 		-- "css",
-		-- "markdown",
+		"markdown",
 		-- "svelte",
 		-- "graphql",
 		"bash",
@@ -84,7 +84,7 @@ treesitter.setup({
 			-- * query_string: eg '@function.inner'
 			-- * selection_mode: eg 'v'
 			-- and should return true of false
-			include_surrounding_whitespace = true,
+			include_surrounding_whitespace = false,
 		},
 	},
 	auto_install = true,

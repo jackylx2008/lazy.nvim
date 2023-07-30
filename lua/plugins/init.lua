@@ -2,7 +2,8 @@ return {
 	-- File explorer
 	{
 		"nvim-neo-tree/neo-tree.nvim",
-		branch = "v2.x",
+		version = "*",
+		-- branch = "v2.x",
 		module = "neo-tree",
 		cmd = "Neotree",
 		event = "VeryLazy",
@@ -14,8 +15,8 @@ return {
 			require("plugins.configs.neo-tree")
 		end,
 	},
+
 	-- Coloscheme
-	-- { "arturgoms/moonbow.nvim" },
 	{ "rebelot/kanagawa.nvim" },
 	{ "mhartington/oceanic-next" },
 	{ "glepnir/zephyr-nvim" },
@@ -23,7 +24,6 @@ return {
 	{ "EdenEast/nightfox.nvim" },
 	{ "Mofiqul/vscode.nvim" },
 	{ "NTBBloodbath/doom-one.nvim" },
-
 	{ "catppuccin/nvim", name = "catppuccin" },
 	{ "sainnhe/everforest" },
 	{ "folke/tokyonight.nvim", opts = { style = "moon" } },
@@ -75,7 +75,10 @@ return {
 		"nvim-telescope/telescope.nvim",
 		dependencies = {
 			"nvim-telescope/telescope-media-files.nvim",
-			"nvim-telescope/telescope-fzf-native.nvim",
+			{
+				"nvim-telescope/telescope-fzf-native.nvim",
+				build = "make",
+			},
 		},
 		-- cmd = {
 		-- 	"Telescope",
@@ -85,6 +88,7 @@ return {
 		-- },
 		config = function()
 			require("plugins.configs.telescope")
+			require("telescope").load_extension("fzf")
 		end,
 	},
 	-- {
@@ -193,14 +197,6 @@ return {
 		end,
 	},
 
-	-- Comment Must after treesitter-textobjects
-	{
-		"numToStr/Comment.nvim",
-		config = function()
-			require("plugins.configs.comment")
-		end,
-	},
-
 	-- Formatting
 	{ "jayp0521/mason-null-ls.nvim" },
 	{
@@ -212,12 +208,8 @@ return {
 
 	-- Treesitter
 	{
-		"nvim-treesitter/nvim-treesitter-textobjects",
-		after = "nvim-treesitter",
-		requires = "nvim-treesitter/nvim-treesitter",
-	},
-	{
 		"nvim-treesitter/nvim-treesitter",
+		dependencies = "nvim-treesitter/nvim-treesitter-textobjects",
 		config = function()
 			require("plugins.configs.treesitter")
 		end,
@@ -225,6 +217,14 @@ return {
 	{ "JoosepAlviste/nvim-ts-context-commentstring" },
 	{ "p00f/nvim-ts-rainbow" },
 	{ "nvim-treesitter/playground" },
+
+	-- Comment Must after treesitter-textobjects
+	{
+		"numToStr/Comment.nvim",
+		config = function()
+			require("plugins.configs.comment")
+		end,
+	},
 
 	-- Auto closing
 	{
@@ -361,12 +361,6 @@ return {
 		end,
 	},
 
-	-- Diffview
-	{
-		"sindrets/diffview.nvim",
-		config = true,
-	},
-
 	-- Tmux
 	-- {
 	-- 	"aserowy/tmux.nvim",
@@ -385,7 +379,7 @@ return {
       { "S", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
       { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
       { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-      { "<c-r>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+      -- { "<c-r>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
     },
 	},
 	{
@@ -513,7 +507,6 @@ return {
 		},
 	},
 	-- TODO: Markdown
-
 	-- DAP
 	{
 		"rcarriga/nvim-dap-ui",

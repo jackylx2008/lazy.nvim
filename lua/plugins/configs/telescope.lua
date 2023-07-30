@@ -9,7 +9,6 @@ local icons = require("plugins.configs.icons")
 
 telescope.setup({
 	defaults = {
-
 		prompt_prefix = icons.ui.Telescope .. " ",
 		selection_caret = " ",
 		path_display = { "smart" },
@@ -146,10 +145,17 @@ telescope.setup({
 		-- builtin picker
 	},
 	extensions = {
+		fzf = {
+			fuzzy = true,
+			verride_generic_sorter = true, -- override the generic sorter
+			override_file_sorter = true, -- override the file sorter
+			case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+			-- the default case_mode is "smart_case"
+		},
 		media_files = {
 			-- filetypes whitelist
 			-- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
-			filetypes = { "png", "webp", "jpg", "jpeg" },
+			filetypes = { "png", "pdf", "jpg", "jpeg", "mp4" },
 			find_cmd = "rg", -- find command (defaults to `fd`)
 		},
 	},

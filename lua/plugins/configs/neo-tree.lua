@@ -1,3 +1,4 @@
+-- * The `filesystem.follow_current_file` option is replaced with a table, please move to `filesystem.follow_current_file.enabled`.
 local status_ok, neo_tree = pcall(require, "neo-tree")
 if not status_ok then
 	vim.notify("Neotree not found")
@@ -55,10 +56,17 @@ neo_tree.setup({
 			["o"] = "open",
 			["v"] = "open_vsplit",
 			["<space>"] = false,
+			-- Cancel `s` `S`, conflict with flash.nvim
+			["s"] = false,
+			["S"] = false,
 		},
 	},
+	-- * The `filesystem.follow_current_file` option is replaced with a table, please move to `filesystem.follow_current_file.enabled`.
 	filesystem = {
-		follow_current_file = true,
+		-- follow_current_file = true,
+		follow_current_file = {
+			enabled = true,
+		},
 		hijack_netrw_behavior = "open_current",
 		use_libuv_file_watcher = true,
 		filtered_items = {

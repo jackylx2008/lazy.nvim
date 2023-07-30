@@ -1,5 +1,6 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+vim.loader.enable()
 
 require("user.functions")
 require("user.globals")
@@ -25,5 +26,6 @@ local colorscheme_favorite = {
 	"onedark", -- Error with indentline
 	"gruvbox-material", -- Error with indentline
 }
+math.randomseed(tostring(os.time()):reverse():sub(1, 6))
 local colorscheme = colorscheme_favorite[math.random(1, #colorscheme_favorite)]
 vim.cmd.colorscheme(colorscheme)
