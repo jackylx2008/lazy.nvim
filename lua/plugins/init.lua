@@ -88,7 +88,7 @@ return {
 		-- },
 		config = function()
 			require("plugins.configs.telescope")
-			require("telescope").load_extension("fzf")
+			-- require("telescope").load_extension("fzf")
 		end,
 	},
 	-- {

@@ -3,7 +3,6 @@ vim.g.maplocalleader = " "
 vim.loader.enable()
 
 require("user.functions")
-require("user.globals")
 require("user.lazy")
 
 -- Random colorscheme

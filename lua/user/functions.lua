@@ -112,27 +112,26 @@ function M.get_buf_option(opt)
 end
 
 function M.smart_quit()
-	vim.cmd("q!")
-	-- local bufnr = vim.api.nvim_get_current_buf()
-	-- local modified = vim.api.nvim_buf_get_option(bufnr, "modified")
-	-- if modified then
-	-- 	vim.ui.input({
-	-- 		prompt = "You have unsaved changes. Quit anyway? (y/n) ",
-	-- 	}, function(input)
-	-- 		if input == "y" then
-	-- 			vim.cmd("q!")
-	-- 		end
-	-- 	end)
-	-- else
-	-- 	-- Close neo_tree
-	-- 	-- require("neo-tree.sources.manager").close_all()
-	-- 	-- Close Tags (Vista)
-	-- 	-- vim.cmd("Vista!")
-	-- 	-- Save session
-	-- 	-- vim.cmd("Autosession save")
-	-- 	-- Quit
-	-- 	vim.cmd("q!")
-	-- end
+	local bufnr = vim.api.nvim_get_current_buf()
+	local modified = vim.api.nvim_buf_get_option(bufnr, "modified")
+	if modified then
+		vim.ui.input({
+			prompt = "You have unsaved changes. Quit anyway? (y/n) ",
+		}, function(input)
+			if input == "y" then
+				vim.cmd("q!")
+			end
+		end)
+	else
+		-- Close neo_tree
+		-- require("neo-tree.sources.manager").close_all()
+		-- Close Tags (Vista)
+		-- vim.cmd("Vista!")
+		-- Save session
+		-- vim.cmd("Autosession save")
+		-- Quit
+		vim.cmd("q!")
+	end
 end
 
 M.show_documentation = function()
