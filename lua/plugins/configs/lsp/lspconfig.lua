@@ -13,9 +13,7 @@ if not navic_lsp_status_ok then
 	return
 end
 
-local keymap = vim.keymap
-
-local navbuddy = require("nvim-navbuddy")
+-- local navbuddy = require("nvim-navbuddy")
 -- enable keybinds only for when lsp server available
 -- local on_attach = function(client, bufnr)
 -- 	-- keybind options
@@ -25,17 +23,15 @@ local navbuddy = require("nvim-navbuddy")
 -- 		navic.attach(client, bufnr)
 -- 	end
 -- 	-- set keybinds
--- 	keymap.set("n", "gd", "<cmd>Lspsaga peek_definition<CR>", opts) -- see definition and make edits in window
--- 	keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts) -- got to declaration
 -- 	keymap.set("n", "gf", "<cmd>Lspsaga lsp_finder<CR>", opts) -- show definition, references
--- 	keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts) -- go to implementation
--- 	keymap.set("n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts) -- go to implementation
--- 	keymap.set("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts) -- jump to previous diagnostic in buffer
--- 	keymap.set("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts) -- jump to next diagnostic in buffer
---
 -- 	navbuddy.attach(client, bufnr)
 -- end
-local on_attach = function(_, bufnr)
+
+local on_attach = function(client, bufnr)
+	-- Navic
+	if client.server_capabilities.documentSymbolProvider then
+		navic.attach(client, bufnr)
+	end
 	-- Enable completion triggered by <c-x><c-o>
 	local nmap = function(keys, func, desc)
 		if desc then
@@ -46,20 +42,19 @@ local on_attach = function(_, bufnr)
 	end
 
 	nmap("gd", "<cmd>Lspsaga peek_definition<CR>", "[G]oto [D]efinition")
-	nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
-	nmap("K", vim.lsp.buf.hover, "Hover Documentation")
+	nmap("gD", vim.lsp.buf.declaration, "Goto Declaration")
+	-- nmap("K", vim.lsp.buf.hover, "Hover Documentation")
 	nmap("gi", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
 	nmap("<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
-	nmap("<leader>wa", vim.lsp.buf.add_workspace_folder, "[W]orkspace [A]dd Folder")
-	nmap("<leader>wr", vim.lsp.buf.remove_workspace_folder, "[W]orkspace [R]emove Folder")
-	nmap("<leader>wl", function()
-		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-	end, "[W]orkspace [L]ist Folders")
-	nmap("<leader>D", vim.lsp.buf.type_definition, "Type [D]efinition")
-	nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
-	nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+	-- nmap("<leader>wa", vim.lsp.buf.add_workspace_folder, "[W]orkspace [A]dd Folder")
+	-- nmap("<leader>wr", vim.lsp.buf.remove_workspace_folder, "[W]orkspace [R]emove Folder")
+	-- nmap("<leader>wl", function()
+	-- 	print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+	-- end, "[W]orkspace [L]ist Folders")
 	-- nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
 	nmap("gr", vim.lsp.buf.references, "[G]oto [R]eferences")
+	nmap("[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", "Diagnostic jump pprev")
+	nmap("]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", "Diagnostic jump pnext")
 end
 
 -- used to enable autocompletion (assign to every lsp server config)
@@ -74,7 +69,7 @@ for type, icon in pairs(signs) do
 end
 
 -- configure clangd server
--- touch compile_flags.txt and add std=c++17 to clarify std
+-- touch compile_flags.txt and add std=c++17 to clarify c++ std
 capabilities.offsetEncoding = { "utf-16" } -- to avoid multi server warning in c/cpp file
 lspconfig["clangd"].setup({
 	capabilities = capabilities,

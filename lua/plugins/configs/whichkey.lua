@@ -109,8 +109,11 @@ local mappings = {
 		["a"] = { "<cmd>Lspsaga code_action<CR>", "Code action" }, -- see available code actions
 		["d"] = { "<cmd>Lspsaga show_cursor_diagnostics<CR>", "Show cursor diagnostics" }, -- show diagnostics for cursor
 		["l"] = { "<cmd>Lspsaga show_line_diagnostics<CR>", "Show line diagnostics" }, -- show  diagnostics for line
-		["K"] = { "<cmd>Lspsaga hover_doc<CR>", "Hover doc" }, -- show documentation for what is under cursor
+		["k"] = { "<cmd>Lspsaga hover_doc<CR>", "Hover doc" }, -- show documentation for what is under cursor
 		["o"] = { "<cmd>LSoutlineToggle<CR>", "LSoutlineToggle" }, -- see outline on right hand side
+		["n"] = { "<cmd>Lspsaga rename<CR>", "Rename" },
+		["D"] = { "<cmd>Lspsaga goto_definition<CR>", "Goto Definition" },
+		["t"] = { "<cmd>lua vim.lsp.buf.type_definition()", "Type Definition" },
 	},
 
 	u = {
@@ -167,21 +170,19 @@ local mappings = {
 
 	-- TODO: 不知道为啥更新插件后没有SaveSession了，smart_quit工作不正常
 
-	-- s = {
-	-- 	name = "Session",
-	-- 	s = { "<cmd>Autosession save<cr>", "Save" },
-	-- 	r = { "<cmd>Autosession restore<cr>", "Restore" },
-	-- 	x = { "<cmd>Autosession delete<cr>", "Delete" },
-	-- 	f = { "<cmd>Autosession search<cr>", "Find" },
-	-- 	-- d = { "<cmd>Autosession delete<cr>", "Find Delete" },
-	-- },
+	s = {
+		name = "Session",
+		s = { "<cmd>Autosession save<cr>", "Save" },
+		r = { "<cmd>Autosession restore<cr>", "Restore" },
+		x = { "<cmd>Autosession delete<cr>", "Delete" },
+		f = { "<cmd>Autosession search<cr>", "Find" },
+	},
 
 	r = {
 		name = "Replace",
 		r = { "<cmd>lua require('spectre').open()<cr>", "Replace" },
 		w = { "<cmd>lua require('spectre').open_visual({select_word=true})<cr>", "Replace Word" },
 		f = { "<cmd>lua require('spectre').open_file_search()<cr>", "Replace Buffer" },
-		n = { "<cmd>Lspsaga rename<CR>", "Rename" },
 	},
 
 	d = {
