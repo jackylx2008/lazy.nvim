@@ -3,6 +3,7 @@ if not status_ok then
 	return
 end
 
+local system = vim.loop.os_uname().sysname
 toggleterm.setup({
 	size = 20,
 	open_mapping = [[<c-\>]],
@@ -15,7 +16,13 @@ toggleterm.setup({
 	persist_size = true,
 	direction = "float",
 	close_on_exit = true,
-	shell = vim.o.shell,
+	shell = function()
+		if system == "Windows_NT" then
+			return "pwsh.exe"
+		elseif system ~= "Windows_NT" then
+			return vim.o.shell
+		end
+	end,
 	float_opts = {
 		border = "curved",
 		winblend = 0,

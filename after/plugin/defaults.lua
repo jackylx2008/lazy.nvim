@@ -72,7 +72,7 @@ local options = {
 	undofile = true, -- enable persistent undo
 	numberwidth = 2, -- set number column width to 2 {default 4}
 	signcolumn = "yes", -- always show the sign column ,otherwise it would shift the text each time
-	-- foldmethod = "manual", -- folding, set to "expr" for treesitter based folding
+	-- foldmethod = "manual",
 }
 
 for k, v in pairs(options) do

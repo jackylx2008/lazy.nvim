@@ -335,6 +335,7 @@ return {
 	-- toggle Term TODO: Check the keybinds
 	{
 		"akinsho/toggleterm.nvim",
+		event = "VeryLazy",
 		config = function()
 			require("plugins.configs.toggle-term")
 		end,
