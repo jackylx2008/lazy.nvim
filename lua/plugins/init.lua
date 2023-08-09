@@ -54,11 +54,21 @@ return {
 	-- Maximize splits
 	{ "szw/vim-maximizer" },
 
-	-- Surround words with: "({[
+	-- Surround words with: "({[ ysa"(
 	{
 		"kylechui/nvim-surround",
 		config = function()
 			require("plugins.configs.surround")
+		end,
+	},
+	{
+		"Wansmer/treesj",
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
+		cmd = { "TSJToggle", "TSJSplit", "TSJJoin" },
+		opts = { use_default_keymaps = false },
+		config = function()
+			require("treesj").setup({--[[ your config ]]
+			})
 		end,
 	},
 
