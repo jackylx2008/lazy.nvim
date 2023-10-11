@@ -88,9 +88,18 @@ local m_opts = {
 }
 
 local mappings = {
-	["/"] = { "<Plug>(comment_toggle_linewise_current)", "Comment" },
-	["e"] = { "<cmd>Neotree toggle<cr>", "Explorer" },
-	["m"] = { "<cmd>TSJToggle<cr>", "Toggle Treesitter Join" },
+	["/"] = {
+		"<Plug>(comment_toggle_linewise_current)",
+		"Comment",
+	},
+	["e"] = {
+		"<cmd>Neotree toggle<cr>",
+		"Explorer",
+	},
+	["m"] = {
+		"<cmd>TSJToggle<cr>",
+		"Toggle Treesitter Join",
+	},
 	["nv"] = { "<cmd>Navbuddy<cr>", "Navbuddy" },
 	["q"] = { '<cmd>lua require("user.functions").smart_quit()<CR>', "Quit" },
 	-- ["q"] = { "<cmd>wq!<cr>", "Quit" },

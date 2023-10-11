@@ -121,10 +121,14 @@ return {
 	-- Auto completions
 	{
 		"hrsh7th/nvim-cmp",
+		branch = "c4e491a87eeacf0408902c32f031d802c7eafce8",
 		event = { "BufReadPost", "BufNewFile" },
 		dependencies = {
 			{
-				{ "hrsh7th/cmp-nvim-lsp" },
+				{
+					"hrsh7th/cmp-nvim-lsp",
+					branch = "44b16d11215dce86f253ce0c30949813c0a90765",
+				},
 				{ "hrsh7th/cmp-buffer" }, -- buffer completions
 				{ "hrsh7th/cmp-path" }, -- path completions
 				{ "hrsh7th/cmp-cmdline" }, -- cmdline completions
@@ -173,6 +177,7 @@ return {
 	{ "onsails/lspkind.nvim" },
 	{
 		"neovim/nvim-lspconfig",
+		branch = "e86a4c84ff35240639643ffed56ee1c4d55f538e",
 		cmd = { "Mason", "Neoconf" },
 		event = { "BufReadPost", "BufNewFile" },
 		dependencies = {
@@ -211,6 +216,7 @@ return {
 	{ "jayp0521/mason-null-ls.nvim" },
 	{
 		"jose-elias-alvarez/null-ls.nvim",
+		branch = "db09b6c691def0038c456551e4e2772186449f35",
 		config = function()
 			require("plugins.configs.lsp.null-ls")
 		end,
@@ -273,6 +279,7 @@ return {
 	-- Sessions TODO: Check the keybinds
 	{
 		"rmagatti/auto-session",
+		branch = "7afbb149f87be279778689596c781882014f7eef",
 		config = function()
 			require("plugins.configs.auto-session")
 		end,
@@ -297,6 +304,7 @@ return {
 	-- Notification
 	{
 		"rcarriga/nvim-notify",
+		branch = "ea9c8ce7a37f2238f934e087c255758659948e0f",
 		config = function()
 			require("plugins.configs.notify")
 		end,
@@ -411,6 +419,7 @@ return {
 	-- IndentLine
 	{
 		"lukas-reineke/indent-blankline.nvim",
+		branch = "4541d690816cb99a7fc248f1486aa87f3abce91c",
 		config = function()
 			require("plugins.configs.indentblankline")
 		end,
