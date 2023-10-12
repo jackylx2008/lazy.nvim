@@ -128,7 +128,7 @@ function M.smart_quit()
 		-- Close Tags (Vista)
 		vim.cmd("Vista!")
 		-- Save session
-		vim.cmd("Autosession save")
+		-- vim.cmd("Autosession save")
 		-- Quit
 		vim.cmd("q!")
 	end

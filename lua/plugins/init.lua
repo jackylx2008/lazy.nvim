@@ -277,13 +277,13 @@ return {
 	},
 
 	-- Sessions TODO: Check the keybinds
-	{
-		"rmagatti/auto-session",
-		commit = "7afbb149f87be279778689596c781882014f7eef",
-		config = function()
-			require("plugins.configs.auto-session")
-		end,
-	},
+	-- {
+	-- 	"rmagatti/auto-session",
+	-- 	commit = "7afbb149f87be279778689596c781882014f7eef",
+	-- 	config = function()
+	-- 		require("plugins.configs.auto-session")
+	-- 	end,
+	-- },
 
 	-- UI
 	{

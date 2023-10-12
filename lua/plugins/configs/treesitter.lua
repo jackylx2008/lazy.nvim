@@ -25,6 +25,8 @@ treesitter.setup({
 	-- ensure these language parsers are installed
 	ensure_installed = {
 		"json",
+		"cpp",
+		"c",
 		-- "javascript",
 		-- "typescript",
 		-- "tsx",
