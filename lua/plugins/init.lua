@@ -419,7 +419,7 @@ return {
 	-- IndentLine
 	{
 		"lukas-reineke/indent-blankline.nvim",
-		commit = "4541d690816cb99a7fc248f1486aa87f3abce91c",
+		-- commit = "4541d690816cb99a7fc248f1486aa87f3abce91c",
 		config = function()
 			require("plugins.configs.indentblankline")
 		end,

@@ -13,7 +13,7 @@ local colorscheme_favorite = {
 	"duskfox",
 	"github_dark_dimmed",
 	"OceanicNext",
-	"github_dark",
+	-- "github_dark",
 	"catppuccin-mocha",
 	"catppuccin-macchiato",
 	"tokyonight",
