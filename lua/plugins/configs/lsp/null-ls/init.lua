@@ -33,7 +33,7 @@ null_ls.setup({
 		diagnostics.flake8.with({
 			-- Get rid of Errors:whitespace after ":"
 			args = {
-				"--ignore=E203,",
+				"--ignore=E203,E501,W291,F821,E225",
 			},
 		}),
 		diagnostics.markdownlint,
