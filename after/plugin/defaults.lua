@@ -1,7 +1,7 @@
--- local api = vim.api
-
+local vim = vim
 local g = vim.g
-local opt = vim.opt
+-- local opt = vim.opt
+local api = vim.api
 -- local cmd = vim.cmd
 
 -- Remap leader and local leader to <Space>
@@ -63,7 +63,8 @@ local options = {
 	guifontwide = "Heiti SC:h18", -- the font used in graphical neovim applications like neovim-qt
 	-- guifont = "Hack Nerd Font Mono:h16", -- the font used in graphical neovim applications like neovim-qt
 	guifont = "JetBrainsMonoNL Nerd Font Mono:h16", -- the font used in graphical neovim applications
-	foldexpr = "", -- set to "nvim_treesitter#foldexpr()" for treesitter based folding
+	foldmethod = "expr",
+	foldexpr = "nvim_treesitter#foldexpr()", -- set to "nvim_treesitter#foldexpr()" for treesitter based folding
 	hlsearch = false, -- highlight all matches on previous search pattern
 	ignorecase = true, -- ignore case in search patterns
 	smartcase = true, -- smart case
@@ -72,7 +73,6 @@ local options = {
 	undofile = true, -- enable persistent undo
 	numberwidth = 2, -- set number column width to 2 {default 4}
 	signcolumn = "yes", -- always show the sign column ,otherwise it would shift the text each time
-	-- foldmethod = "manual",
 }
 
 for k, v in pairs(options) do
@@ -98,3 +98,27 @@ vim.cmd([[
     autocmd TextYankPost * silent! lua vim.highlight.on_yank()
   augroup end
 ]])
+
+local M = {}
+-- function to create a list of commands and convert them to autocommands
+-------- This function is taken from https://github.com/norcalli/nvim_utils
+function M.nvim_create_augroups(definitions)
+	for group_name, definition in pairs(definitions) do
+		api.nvim_command("augroup " .. group_name)
+		api.nvim_command("autocmd!")
+		for _, def in ipairs(definition) do
+			local command = table.concat(vim.tbl_flatten({ "autocmd", def }), " ")
+			api.nvim_command(command)
+		end
+		api.nvim_command("augroup END")
+	end
+end
+
+local autoCommands = {
+	-- other autocommands
+	open_folds = {
+		{ "BufReadPost,FileReadPost", "*", "normal zR" },
+	},
+}
+
+M.nvim_create_augroups(autoCommands)
