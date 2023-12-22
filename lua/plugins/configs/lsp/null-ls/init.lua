@@ -19,6 +19,12 @@ null_ls.setup({
 		formatting.prettier, -- js/ts formatter
 		formatting.stylua, -- lua formatter
 		formatting.black.with({ extra_args = { "--fast" } }),
+		-- formatting.clang_format.with({
+		-- 	args = {
+		-- 		'--style="{BasedOnStyle: llvm, IndentWidth: 4}"',
+		-- 		"$FILENAME",
+		-- 	},
+		-- }),
 		formatting.clang_format,
 		formatting.isort,
 		diagnostics.luacheck,
