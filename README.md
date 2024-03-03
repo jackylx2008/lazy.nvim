@@ -15,6 +15,24 @@ git clone https://github.com/jackylx2008/lazy.nvim.git ~/.config/nvim
 
 ## 更新记录
 
+### 2024-03-03 17:32
+
+To make clangd recognize c++ standard headers:
+
+Add `compile_commands.json` at Project folder
+
+[Reference](https://www.reddit.com/r/neovim/comments/10f846v/how_to_configure_clangd_to_use_c17/)
+
+To make `cpplint` ignore `WARN`:"Do not indent within a namespace"
+
+Add `CPPLINT.cfg`
+
+```bash
+set noparent
+filter=-runtime/indentation_namespace,-build/namespaces,-whitespace/indent,-legal/copyright
+
+```
+
 ### 2023-07-26 14:58
 
 `harpoon` 和 `auto-session` 考虑是否删除
