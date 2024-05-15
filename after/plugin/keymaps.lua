@@ -14,7 +14,7 @@ local keymap = vim.api.nvim_set_keymap
 keymap("n", "<Space>", "", opts)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-keymap("n", "<C-Space>", "<cmd>WhichKey \\<leader><cr>", opts)
+-- keymap("n", "<C-Space>", "<cmd>WhichKey \\<leader><cr>", opts)
 keymap("n", "<C-i>", "<C-i>", opts)
 
 -- Modes
@@ -63,6 +63,9 @@ keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
 -- keymap("n", "n", "nzzzv", opts)
 -- keymap("n", "N", "Nzzzv", opts)
+-- Increment/Decrement numbers
+keymap("n", "<leader>+", "<C-a>", opts)
+keymap("n", "<leader>-", "<C-x>", opts)
 
 -- Naviagate buffers
 keymap("n", "<TAB>", ":bnext<CR>", opts)
@@ -77,10 +80,8 @@ keymap("n", "<S-TAB>", ":bprevious<CR>", opts)
 -- Better escape using jk in insert and terminal mode
 keymap("i", "jk", "<Esc>", opts)
 keymap("i", "kj", "<Esc>", opts)
-keymap("i", "jj", "<Esc>", opts)
 keymap("t", "jk", "<C-\\><C-n>", opts)
 keymap("t", "kj", "<C-\\><C-n>", opts)
-keymap("t", "jj", "<C-\\><C-n>", opts)
 
 -- Visual --
 -- Stay in indent mode

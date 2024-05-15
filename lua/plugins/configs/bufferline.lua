@@ -4,7 +4,7 @@ if not status_ok then
 	return
 end
 
-print("running bufferline")
+-- print("running bufferline")
 bufferline.setup({
 	options = {
 		numbers = "none", -- | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,

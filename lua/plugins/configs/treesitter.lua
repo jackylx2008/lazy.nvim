@@ -34,6 +34,7 @@ treesitter.setup({
 		-- "html",
 		-- "css",
 		"markdown",
+		"markdown_inline",
 		-- "svelte",
 		-- "graphql",
 		"bash",
@@ -44,6 +45,15 @@ treesitter.setup({
 		"python",
 		-- "rust",
 		-- "toml",
+	},
+	incremental_selection = {
+		enable = true,
+		keymaps = {
+			init_selection = "<cr>",
+			node_incremental = "<cr>",
+			scope_incremental = "grc",
+			node_decremental = "grm",
+		},
 	},
 	-- auto install above language parsers
 

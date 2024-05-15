@@ -32,6 +32,7 @@ return {
 	-- Whichkey
 	{
 		"folke/which-key.nvim",
+		event = "VeryLazy",
 		config = function()
 			require("plugins.configs.whichkey")
 		end,
@@ -84,6 +85,7 @@ return {
 	{
 		"nvim-telescope/telescope.nvim",
 		dependencies = {
+			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope-media-files.nvim",
 			{
 				"nvim-telescope/telescope-fzf-native.nvim",
@@ -221,7 +223,11 @@ return {
 	-- Treesitter
 	{
 		"nvim-treesitter/nvim-treesitter",
-		dependencies = "nvim-treesitter/nvim-treesitter-textobjects",
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter-textobjects",
+			"windwp/nvim-ts-autotag",
+		},
+		build = ":TSUpdate",
 		config = function()
 			require("plugins.configs.treesitter")
 		end,
@@ -284,6 +290,7 @@ return {
 	-- UI
 	{
 		"stevearc/dressing.nvim",
+		event = "VeryLazy",
 		config = function()
 			require("plugins.configs.dressing")
 		end,
