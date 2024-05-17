@@ -144,7 +144,7 @@ cmp.setup({
 	-- 	{ name = "emoji", group_index = 2 },
 	-- },
 	sources = {
-		{ name = "nvim_lsp", max_item_count = 15 },
+		{ name = "nvim_lsp", max_item_count = 10 },
 		{ name = "nvim_lsp_signature_help", max_item_count = 5 },
 		{ name = "luasnip", max_item_count = 5 },
 		-- { name = "cmp_tabnine" },

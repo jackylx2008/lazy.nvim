@@ -55,9 +55,11 @@ return {
 	-- Maximize splits
 	{ "szw/vim-maximizer" },
 
-	-- Surround words with: "({[ ysa"(
+	-- Surround words with: "({[ ysw"(
 	{
 		"kylechui/nvim-surround",
+		envent = { "BufReadPre", "BufNewFile" },
+		version = "*",
 		config = function()
 			require("plugins.configs.surround")
 		end,
@@ -87,6 +89,7 @@ return {
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope-media-files.nvim",
+			"rmagatti/auto-session",
 			{
 				"nvim-telescope/telescope-fzf-native.nvim",
 				build = "make",
@@ -173,11 +176,20 @@ return {
 			require("plugins.configs.cmp")
 		end,
 	},
-
+	{
+		"antosha417/nvim-lsp-file-operations",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-neo-tree/neo-tree.nvim",
+		},
+		config = function()
+			require("lsp-file-operations").setup()
+		end,
+	},
 	{
 		"neovim/nvim-lspconfig",
 		cmd = { "Mason", "Neoconf" },
-		event = { "BufReadPost", "BufNewFile" },
+		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
 			{
 				-- Manage and Install LSP servers
@@ -186,9 +198,11 @@ return {
 					require("plugins.configs.lsp.mason")
 				end,
 			},
+			{ "antosha417/nvim-lsp-file-operations", config = true },
 			"williamboman/mason-lspconfig",
 			"folke/neoconf.nvim",
-			"folke/neodev.nvim",
+			{ "folke/neodev.nvim", opt = {} },
+			"hrsh7th/cmp-nvim-lsp",
 			{
 				"j-hui/fidget.nvim",
 				tag = "legacy",
@@ -208,6 +222,19 @@ return {
 		config = function()
 			require("plugins.configs.lsp.lspconfig")
 		end,
+	},
+	-- Trouble
+	{
+		"folke/trouble.nvim",
+		dependencies = {
+			"nvim-tree/nvim-web-devicons",
+			"folke/todo-comments.nvim",
+		},
+		opts = {
+			-- your configuration comes here
+			-- or leave it empty to use the default settings
+			-- refer to the configuration section below
+		},
 	},
 
 	-- Formatting
@@ -425,7 +452,9 @@ return {
 	-- IndentLine
 	{
 		"lukas-reineke/indent-blankline.nvim",
-		event = { "BufReadPre", "BufNewFile" },
+		-- event = { "BufReadPre", "BufNewFile" },
+		main = "ibl",
+		commit = "29be0919b91fb59eca9e90690d76014233392bef", -- To make the version right
 		config = function()
 			require("plugins.configs.indentblankline")
 		end,

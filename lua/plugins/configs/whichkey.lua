@@ -128,9 +128,11 @@ local mappings = {
 
 	u = {
 		name = "TodoComments",
-		["t"] = { "<cmd>TodoTelescope<CR>", "Show Comments" },
+		["s"] = { "<cmd>TodoTelescope<CR>", "Show Comments" },
 		["q"] = { "<cmd>TodoQuickFix<CR>", "Quick Fix" },
 		["l"] = { "<cmd>TodoLocList<CR>", "List Comments" },
+		-- ["j"] = { "<cmd>todo_comments.jump_next()<CR>", "Next Comments" },
+		-- ["k"] = { "<cmd>todo_comments.jump_prev<CR>", "Previous Comments" },
 	},
 
 	B = {
@@ -187,6 +189,16 @@ local mappings = {
 	},
 
 	r = {
+		name = "Trouble",
+		l = { "<cmd>TroubleToggle<cr>", "Trouble [L]ist" },
+		w = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Trouble [W]orspace diagnostics" },
+		d = { "<cmd>TroubleToggle document_diagnostics<cr>", "Trouble [D]ocument diagnostics" },
+		q = { "<cmd>TroubleToggle quickfix<cr>", "Trouble [Q]uick fix" },
+		o = { "<cmd>TroubleToggle loclist<cr>", "Trouble L[o]cal list" },
+		t = { "<cmd>TodoTrouble<cr>", "[T]odos in Trouble" },
+	},
+
+	R = {
 		name = "Replace",
 		r = { "<cmd>lua require('spectre').open()<cr>", "Replace" },
 		w = { "<cmd>lua require('spectre').open_visual({select_word=true})<cr>", "Replace Word" },

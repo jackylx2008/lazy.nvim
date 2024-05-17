@@ -31,7 +31,15 @@ local config = {
 }
 
 vim.diagnostic.config(config)
-mason.setup()
+mason.setup({
+	ui = {
+		icons = {
+			package_install = "✔",
+			package_pendings = "→",
+			package_uninstall = "×",
+		},
+	},
+})
 
 mason_lsp.setup({
 	-- list of servers for mason to install
