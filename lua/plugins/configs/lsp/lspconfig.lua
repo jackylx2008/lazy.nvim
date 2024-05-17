@@ -81,7 +81,7 @@ local python_env = {}
 if vim.loop.os_uname().sysname == "Darwin" then
 	-- custom settings for mac
 	python_env = {
-		pythonPath = "/Users/liuxin/anaconda3/bin/python3",
+		pythonPath = "/opt/anaconda3/bin/python",
 	}
 end
 lspconfig["pyright"].setup({

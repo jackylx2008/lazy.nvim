@@ -38,8 +38,8 @@ local function getGreeting(name)
 	return greetingsTable[greetingIndex] .. ", " .. name .. "\n" .. datetime
 end
 
-local userName = "Jackylx"
-local greeting = getGreeting(userName)
+local username = "Jackylx"
+local greeting = getGreeting(username)
 
 local greetHeading = {
 	type = "text",

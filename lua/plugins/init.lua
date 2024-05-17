@@ -134,6 +134,7 @@ return {
 				{ "hrsh7th/cmp-cmdline" }, -- cmdline completions
 				{ "hrsh7th/cmp-emoji" },
 				{ "hrsh7th/cmp-nvim-lua" },
+				{ "onsails/lspkind.nvim" },
 				-- {
 				-- 	"f3fora/cmp-spell",
 				-- 	config = function()
@@ -173,8 +174,6 @@ return {
 		end,
 	},
 
-	-- Config for LSP Servers
-	{ "onsails/lspkind.nvim" },
 	{
 		"neovim/nvim-lspconfig",
 		cmd = { "Mason", "Neoconf" },
@@ -223,6 +222,7 @@ return {
 	-- Treesitter
 	{
 		"nvim-treesitter/nvim-treesitter",
+		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter-textobjects",
 			"windwp/nvim-ts-autotag",
@@ -248,6 +248,9 @@ return {
 	{
 		"windwp/nvim-autopairs",
 		event = "VeryLazy",
+		dependencies = {
+			"hrsh7th/nvim-cmp",
+		},
 		config = function()
 			require("plugins.configs.autopairs")
 		end,
@@ -279,13 +282,13 @@ return {
 	},
 
 	-- Sessions TODO: Check the keybinds
-	-- {
-	-- 	"rmagatti/auto-session",
-	-- 	commit = "7afbb149f87be279778689596c781882014f7eef",
-	-- 	config = function()
-	-- 		require("plugins.configs.auto-session")
-	-- 	end,
-	-- },
+	{
+		"rmagatti/auto-session",
+		-- commit = "7afbb149f87be279778689596c781882014f7eef",
+		config = function()
+			require("plugins.configs.auto-session")
+		end,
+	},
 
 	-- UI
 	{
@@ -422,6 +425,7 @@ return {
 	-- IndentLine
 	{
 		"lukas-reineke/indent-blankline.nvim",
+		event = { "BufReadPre", "BufNewFile" },
 		config = function()
 			require("plugins.configs.indentblankline")
 		end,
