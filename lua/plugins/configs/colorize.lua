@@ -21,7 +21,7 @@ colorizer.setup({
 		-- True is same as normal
 		tailwind = false, -- Enable tailwind colors
 		-- parsers can contain values used in |user_default_options|
-		virtualtext = "■",
+		virtualtext = "●",
 	},
 	-- all the sub-options of filetypes apply to buftypes
 	buftypes = {},
