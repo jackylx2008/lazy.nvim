@@ -67,7 +67,7 @@ local function lsp_client(msg)
 
 	-- add client
 	for _, client in pairs(buf_clients) do
-		if client.name ~= "null-ls" and client.name ~= "copilot" then
+		if client.name ~= "copilot" then
 			table.insert(buf_client_names, client.name)
 		end
 
@@ -126,12 +126,12 @@ local config = {
 		lualine_b = { components.branch, components.diff, components.diagnostics },
 		lualine_c = {
 			components.python_env, -- WARN: Do not work yet
-			{
-				colored = false,
-				lsp_client,
-				icon = "",
-				color = { fg = colors.violet, gui = "bold" },
-			},
+			lsp_client,
+			-- {
+			-- 	colored = false,
+			-- 	icon = "",
+			-- 	color = { fg = colors.violet, gui = "bold" },
+			-- },
 		},
 		lualine_x = { "filename", { tab_stop }, "encoding", "fileformat", "filetype" },
 		lualine_y = {

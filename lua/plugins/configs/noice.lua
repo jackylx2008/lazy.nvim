@@ -27,13 +27,13 @@ require("noice").setup({
 		-- },
 
 		-- Hide all messages
-		{
-			filter = {
-				event = "msg_show",
-				-- kind = "",
-				-- find = "more line",
-			},
-			opts = { skip = true },
-		},
+		-- {
+		-- 	filter = {
+		-- 		event = "msg_show",
+		-- 		-- kind = "",
+		-- 		-- find = "more line",
+		-- 	},
+		-- 	opts = { skip = true },
+		-- },
 	},
 })
