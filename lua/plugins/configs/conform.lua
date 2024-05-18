@@ -11,8 +11,8 @@ conform.setup({
 			lua = { "stylua" },
 			python = { "isort", "black" },
 			javascript = { { "prettierd", "prettier" } },
-			cpp = { { "clang_format" } },
-			c = { { "clang_format" } },
+			cpp = { { "clang-format" } },
+			c = { { "clang-format" } },
 			markdown = { "prettier" },
 		},
 		-- Set up format-on-save

@@ -186,22 +186,37 @@ return {
 			require("lsp-file-operations").setup()
 		end,
 	},
+	-- Mason
+	{
+		"williamboman/mason.nvim",
+		dependencies = {
+			"williamboman/mason-lspconfig",
+			"WhoIsSethDaniel/mason-tool-installer.nvim",
+		},
+		config = function()
+			require("plugins.configs.lsp.mason")
+		end,
+	},
+	-- Linter
+	{
+		"mfussenegger/nvim-lint",
+		event = { "BufReadPre", "BufNewFile" },
+		config = function()
+			require("plugins.configs.lsp.nvim-lint")
+		end,
+	},
+
+	-- Manage and Install LSP servers
 	{
 		"neovim/nvim-lspconfig",
-		cmd = { "Mason", "Neoconf" },
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
-			{
-				-- Manage and Install LSP servers
-				"williamboman/mason.nvim",
-				config = function()
-					require("plugins.configs.lsp.mason")
-				end,
-			},
 			{ "antosha417/nvim-lsp-file-operations", config = true },
-			"williamboman/mason-lspconfig",
 			"folke/neoconf.nvim",
-			{ "folke/neodev.nvim", opt = {} },
+			{
+				"folke/neodev.nvim",
+				opt = {},
+			},
 			"hrsh7th/cmp-nvim-lsp",
 			{
 				"j-hui/fidget.nvim",
@@ -238,13 +253,13 @@ return {
 	},
 
 	-- Formatting
-	{ "jayp0521/mason-null-ls.nvim" },
-	{
-		"jose-elias-alvarez/null-ls.nvim",
-		-- config = function()
-		-- 	require("plugins.configs.lsp.null-ls")
-		-- end,
-	},
+	-- { "jayp0521/mason-null-ls.nvim" },
+	-- {
+	-- 	"jose-elias-alvarez/null-ls.nvim",
+	-- 	-- config = function()
+	-- 	-- 	require("plugins.configs.lsp.null-ls")
+	-- 	-- end,
+	-- },
 	{
 		"stevearc/conform.nvim",
 		event = { "BufReadPre", "BufNewFile" },

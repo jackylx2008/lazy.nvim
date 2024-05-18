@@ -1,0 +1,8 @@
+{
+    "diagnostics.globals": [
+        "vim",
+        "loal",
+        "mason_tool_install_ok",
+        "mason_tool_installer"
+    ]
+}
