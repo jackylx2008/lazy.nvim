@@ -1,7 +1,7 @@
 local status_ok, conform = pcall(require, "conform")
--- if not status_ok then
---   return
--- end
+if not status_ok then
+	return
+end
 
 conform.setup({
 	-- Everything in opts will be passed to setup()
@@ -12,6 +12,7 @@ conform.setup({
 			python = { "isort", "black" },
 			javascript = { { "prettierd", "prettier" } },
 			cpp = { { "clang_format" } },
+			c = { { "clang_format" } },
 			markdown = { "prettier" },
 		},
 		-- Set up format-on-save

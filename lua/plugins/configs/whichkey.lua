@@ -110,8 +110,8 @@ local mappings = {
 
 	b = {
 		name = "Buffer",
-		["b"] = { "<cmd>lua require('user.bfs').open()<cr>", "Buffers" },
-		["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
+		-- ["b"] = { "<cmd>lua require('user.bfs').open()<cr>", "Buffers" },
+		["c"] = { "<cmd>bd!<CR>", "Close Buffer" },
 	},
 
 	c = {
@@ -280,8 +280,8 @@ local mappings = {
 			"<cmd>Telescope lsp_workspace_diagnostics<cr>",
 			"Workspace Diagnostics",
 		},
-		f = { "<cmd>lua vim.lsp.buf.format({ async = false, timeout_ms = 2000 })<cr>", "Format" },
-		F = { "<cmd>LspToggleAutoFormat<cr>", "Toggle Autoformat" },
+		-- f = { "<cmd>lua vim.lsp.buf.format({ async = false, timeout_ms = 1000 })<cr>", "Format" },
+		-- F = { "<cmd>LspToggleAutoFormat<cr>", "Toggle Autoformat" },
 		i = { "<cmd>LspInfo<cr>", "Info" },
 		h = { "<cmd>IlluminationToggle<cr>", "Toggle Doc HL" },
 		I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },

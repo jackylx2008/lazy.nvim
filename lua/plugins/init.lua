@@ -207,20 +207,20 @@ return {
 				"j-hui/fidget.nvim",
 				tag = "legacy",
 			},
-			{
-				"nvimdev/lspsaga.nvim",
-				event = "LspAttach",
-				dependencies = {
-					--Please make sure you install markdown and markdown_inline parser
-					{ "nvim-treesitter/nvim-treesitter" },
-				},
-				config = function()
-					require("plugins.configs.lsp.lspsaga")
-				end,
-			},
 		},
 		config = function()
 			require("plugins.configs.lsp.lspconfig")
+		end,
+	},
+	{
+		"nvimdev/lspsaga.nvim",
+		event = "LspAttach",
+		dependencies = {
+			--Please make sure you install markdown and markdown_inline parser
+			{ "nvim-treesitter/nvim-treesitter" },
+		},
+		config = function()
+			require("plugins.configs.lsp.lspsaga")
 		end,
 	},
 	-- Trouble
