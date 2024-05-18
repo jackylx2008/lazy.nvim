@@ -576,7 +576,6 @@ return {
 	-- experimental
 	{
 		"folke/noice.nvim",
-		event = "VeryLazy",
 		config = function()
 			require("plugins.configs.noice")
 		end,
