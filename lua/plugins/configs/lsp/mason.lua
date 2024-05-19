@@ -15,7 +15,7 @@ end
 
 -- local diagnostic = {
 -- 	-- disable virtual text
--- 	virtual_text = true,
+-- 	virtual_text = false,
 -- 	update_in_insert = true,
 -- 	underline = true,
 -- 	severity_sort = true,
