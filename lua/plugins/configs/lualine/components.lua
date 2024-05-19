@@ -16,6 +16,19 @@ local colors = {
 	blue = "#50A1CE",
 	grey = "#928374",
 }
+-- Function to save the table to a file
+local function save_table_to_file(tbl, filename)
+	local file = io.open(filename, "w")
+	if file then
+		-- Create a string representation of the table
+		local tbl_str = "return " .. serpent.dump(tbl)
+		file:write(tbl_str)
+		file:close()
+		print("Table saved to " .. filename)
+	else
+		print("Error: Could not open file " .. filename)
+	end
+end
 
 local conditions = {
 	buffer_not_empty = function()
@@ -172,6 +185,36 @@ local M = {
 		padding = { left = 0, right = 0 },
 		color = "SLProgress",
 		cond = nil,
+	},
+	lsp_client = {
+		function()
+			local buf_clients = vim.lsp.buf_get_clients()
+			if next(buf_clients) == nil then
+				return "LSP Inactive"
+			end
+
+			local buf_client_names = {}
+			-- add language server
+			for _, client in pairs(buf_clients) do
+				table.insert(buf_client_names, client.name)
+			end
+			-- add formatter
+			local bfunr = vim.api.nvim_get_current_buf()
+			local formatters = require("conform").list_formatters(bfunr)
+			for _, formatter in pairs(formatters) do
+				table.insert(buf_client_names, formatter.name)
+			end
+			-- add linter
+			local linters = require("lint").get_running()
+			if #linters ~= 0 then
+				table.insert(buf_client_names, linters)
+			end
+
+			local unique_client_names = vim.fn.uniq(buf_client_names)
+			local language_servers = "[" .. table.concat(unique_client_names, ", ") .. "]"
+
+			return language_servers
+		end,
 	},
 }
 

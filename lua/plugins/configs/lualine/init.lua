@@ -125,13 +125,13 @@ local config = {
 		lualine_a = { "mode" },
 		lualine_b = { components.branch, components.diff, components.diagnostics },
 		lualine_c = {
-			components.python_env, -- WARN: Do not work yet
-			lsp_client,
-			-- {
-			-- 	colored = false,
-			-- 	icon = "",
-			-- 	color = { fg = colors.violet, gui = "bold" },
-			-- },
+			-- components.python_env, -- WARN: Do not work yet
+			components.lsp_client,
+			{
+				colored = true,
+				icon = "",
+				-- color = { fg = colors.violet, gui = "bold" },
+			},
 		},
 		lualine_x = { "filename", { tab_stop }, "encoding", "fileformat", "filetype" },
 		lualine_y = {

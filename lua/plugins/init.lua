@@ -200,7 +200,7 @@ return {
 	-- Linter
 	{
 		"mfussenegger/nvim-lint",
-		event = { "BufReadPre", "BufNewFile" },
+		-- event = { "BufReadPre", "BufNewFile" },
 		config = function()
 			require("plugins.configs.lsp.nvim-lint")
 		end,
