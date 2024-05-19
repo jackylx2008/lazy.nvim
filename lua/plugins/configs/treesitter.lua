@@ -52,7 +52,7 @@ treesitter.setup({
 			init_selection = "<cr>",
 			node_incremental = "<cr>",
 			scope_incremental = "grc",
-			node_decremental = "grm",
+			node_decremental = "<C-i>",
 		},
 	},
 	-- auto install above language parsers
