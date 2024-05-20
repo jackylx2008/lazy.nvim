@@ -157,10 +157,13 @@ return {
         },
         {
           "SmiteshP/nvim-navbuddy",
+          -- SHA:f34237e8a41ebc6e2716af2ebf49854d8c5289c8
+          commit = "f34237e", -- if update to f22bac9, get error when start
           dependencies = {
             {
               -- A simple statusline/winbar component that uses LSP to show your current code context
               "SmiteshP/nvim-navic",
+              commit = "8649f69",
               config = function()
                 require("plugins.configs.navic")
               end,
