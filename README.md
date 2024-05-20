@@ -177,3 +177,8 @@ A lot from here is a combination os things that i did but also a lot from others
 
 - [Lunarvim]
 - [AstroNvim]
+
+## nav-buddy navic version
+
+  "nvim-navbuddy": { "branch": "master", "commit": "f34237e8a41ebc6e2716af2ebf49854d8c5289c8" },
+  "nvim-navic": { "branch": "master", "commit": "8649f694d3e76ee10c19255dece6411c29206a54" },
