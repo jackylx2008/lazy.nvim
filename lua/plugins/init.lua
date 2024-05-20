@@ -239,12 +239,6 @@ return {
 
   -- Formatting
   { "jayp0521/mason-null-ls.nvim" },
-  -- {
-  -- 	"jose-elias-alvarez/null-ls.nvim",
-  -- 	config = function()
-  -- 		require("plugins.configs.lsp.null-ls")
-  -- 	end,
-  -- },
   {
     "nvimtools/none-ls.nvim",
     dependencies = {
