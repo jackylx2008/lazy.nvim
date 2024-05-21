@@ -270,12 +270,13 @@ return {
   { "p00f/nvim-ts-rainbow" },
   { "nvim-treesitter/playground" },
 
-  -- Comment Must after treesitter-textobjects
+  --Comment
   {
     "numToStr/Comment.nvim",
     config = function()
       require("plugins.configs.comment")
     end,
+    after = { "nvim-treesitter/nvim-treesitter-textobjects" },
   },
 
   -- Auto closing
@@ -332,8 +333,6 @@ return {
       require("plugins.configs.dressing")
     end,
   },
-  -- A simple statusline/winbar component that uses LSP to show your current code context
-  { "kshenoy/vim-signature" },
   -- Statusline
   {
     "nvim-lualine/lualine.nvim",
@@ -406,10 +405,10 @@ return {
   { "lewis6991/impatient.nvim" },
 
   -- Rust
-  {
-    "simrat39/rust-tools.nvim",
-  },
-  { "Saecki/crates.nvim" },
+  -- {
+  --   "simrat39/rust-tools.nvim",
+  -- },
+  -- { "Saecki/crates.nvim" },
 
   -- Spectre: Better find and replace
   {
@@ -443,18 +442,27 @@ return {
   },
   {
     "abecodes/tabout.nvim",
-    dependencies = { "nvim-cmp" },
+    dependencies = { "nvim-cmp", "nvim-treesitter" },
     event = "VeryLazy",
     config = function()
       require("tabout").setup({
         tabkey = "<leader>.",
         backwards_tabkey = "<leader>,",
-        default_tab = "<Tab>",
-        default_shift_tab = "<S-Tab>",
+        default_tab = "<C-t>",
+        default_shift_tab = "<C-d>",
         completion = false,
         ignore_beginning = true,
+        tabouts = {
+          { open = "'", close = "'" },
+          { open = '"', close = '"' },
+          { open = "`", close = "`" },
+          { open = "(", close = ")" },
+          { open = "[", close = "]" },
+          { open = "{", close = "}" },
+        },
       })
     end,
+    after = { "nvim-cmp" },
   },
   -- IndentLine
   {
@@ -487,41 +495,41 @@ return {
     cmd = "Pantran",
   },
   -- Background transparent
-  {
-    "xiyaowong/transparent.nvim",
-    config = function()
-      require("transparent").setup({
-        groups = { -- table: default groups
-          "Normal",
-          "NormalNC",
-          "Comment",
-          "Constant",
-          "Special",
-          "Identifier",
-          "Statement",
-          "PreProc",
-          "Type",
-          "Underlined",
-          "Todo",
-          "String",
-          "Function",
-          "Conditional",
-          "Repeat",
-          "Operator",
-          "Structure",
-          "LineNr",
-          "NonText",
-          "SignColumn",
-          "CursorLineNr",
-          "EndOfBuffer",
-        },
-        extra_groups = {}, -- table: additional groups that should be cleared
-        exclude_groups = {}, -- table: groups you don't want to clear
-        -- enable = true,
-      })
-    end,
-  },
-  -- references
+  -- {
+  --   "xiyaowong/transparent.nvim",
+  --   config = function()
+  --     require("transparent").setup({
+  --       groups = { -- table: default groups
+  --         "Normal",
+  --         "NormalNC",
+  --         "Comment",
+  --         "Constant",
+  --         "Special",
+  --         "Identifier",
+  --         "Statement",
+  --         "PreProc",
+  --         "Type",
+  --         "Underlined",
+  --         "Todo",
+  --         "String",
+  --         "Function",
+  --         "Conditional",
+  --         "Repeat",
+  --         "Operator",
+  --         "Structure",
+  --         "LineNr",
+  --         "NonText",
+  --         "SignColumn",
+  --         "CursorLineNr",
+  --         "EndOfBuffer",
+  --       },
+  --       extra_groups = {}, -- table: additional groups that should be cleared
+  --       exclude_groups = {}, -- table: groups you don't want to clear
+  --       -- enable = true,
+  --     })
+  --   end,
+  -- },
+  -- highlighting other uses of the word under the cursor
   {
     "RRethy/vim-illuminate",
     providers = {
@@ -557,8 +565,7 @@ return {
       { "[[", desc = "Prev Reference" },
     },
   },
-  -- Ui Cmdline
-  -- experimental
+  -- Ui Cmdline experimental
   {
     "folke/noice.nvim",
     event = "VeryLazy",
