@@ -77,7 +77,7 @@ lspconfig["clangd"].setup({
 })
 
 -- configure pyright server
-local python_env = {}
+local python_env = { "C:/anaconda3/python.exe" }
 if vim.loop.os_uname().sysname == "Darwin" then
   -- custom settings for mac
   python_env = {
