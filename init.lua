@@ -1,6 +1,13 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 vim.loader.enable()
+vim.g.python_host_prog = "C:\\anaconda3\\python.exe"
+vim.g.python3_host_prog = "C:\\anaconda3\\python.exe"
+
+if vim.loop.os_uname().sysname == "Darwin" then
+  vim.g.python_host_prog = "/opt/anaconda3/bin/python"
+  vim.g.python3_host_prog = "/opt/anaconda3/bin/python"
+end
 
 require("user.functions")
 
