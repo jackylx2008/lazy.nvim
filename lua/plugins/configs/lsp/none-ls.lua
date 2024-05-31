@@ -19,7 +19,6 @@ null_ls.setup({
 
     null_ls.builtins.formatting.clang_format,
     require("none-ls.diagnostics.cpplint"),
-    null_ls.builtins.code_actions.gitsigns,
   },
   -- you can reuse a shared lspconfig on_attach callback here
   on_attach = function(client, bufnr)
