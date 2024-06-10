@@ -13,21 +13,14 @@ if not lspkind_status_ok then
   return
 end
 
-local source_mapping = {
-  luasnip = "[Snip]",
-  nvim_lsp = "[Lsp]",
-  buffer = "[Buffer]",
-  nvim_lua = "[Lua]",
-  treesitter = "[Tree]",
-  path = "[Path]",
-  rg = "[Rg]",
-  nvim_lsp_signature_help = "[Sig]",
-  spell = "[Spell]",
-  emoji = "[Emoji]",
-  -- cmp_tabnine = "[TNine]",
-}
-
+local cmp_mapping = require("cmp.config.mapping")
 local compare = require("cmp.config.compare")
+local status_cmp_ok, cmp_types = pcall(require, "cmp.types.cmp")
+if not status_cmp_ok then
+  return
+end
+local ConfirmBehavior = cmp_types.ConfirmBehavior
+local SelectBehavior = cmp_types.SelectBehavior
 
 require("luasnip/loaders/from_vscode").lazy_load()
 
@@ -52,46 +45,50 @@ vim.api.nvim_set_hl(0, "CmpItemKindEmoji", { fg = "#FDE030" })
 vim.api.nvim_set_hl(0, "CmpItemKindCrate", { fg = "#F64D00" })
 
 cmp.setup({
+  duplicates = {
+    buffer = 1,
+    path = 1,
+    nvim_lsp = 0,
+    luasnip = 1,
+  },
+  duplicates_default = 0,
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body) -- For `luasnip` users.
     end,
   },
   mapping = cmp.mapping.preset.insert({
-    ["<C-k>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
-    ["<C-j>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
-    ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
-    ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
-    -- ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-    -- ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
-    ["<C-c>"] = cmp.mapping({
-      i = cmp.mapping.abort(),
-      c = cmp.mapping.close(),
+    ["<C-k>"] = cmp_mapping(cmp_mapping.select_prev_item({ behavior = SelectBehavior.Select }), { "i", "c" }),
+    ["<C-j>"] = cmp_mapping(cmp_mapping.select_next_item({ behavior = SelectBehavior.Select }), { "i", "c" }),
+    ["<Down>"] = cmp_mapping(cmp_mapping.select_next_item({ behavior = SelectBehavior.Select }), { "i" }),
+    ["<Up>"] = cmp_mapping(cmp_mapping.select_prev_item({ behavior = SelectBehavior.Select }), { "i" }),
+    ["<C-d>"] = cmp_mapping.scroll_docs(-4),
+    ["<C-f>"] = cmp_mapping.scroll_docs(4),
+    ["<C-y>"] = cmp_mapping({
+      i = cmp_mapping.confirm({ behavior = ConfirmBehavior.Replace, select = false }),
+      c = function(fallback)
+        if cmp.visible() then
+          cmp.confirm({ behavior = ConfirmBehavior.Replace, select = false })
+        else
+          fallback()
+        end
+      end,
     }),
-    -- Accept currently selected item. If none selected, `select` first item.
-    -- Set `select` to `false` to only confirm explicitly selected items.
-    ["<CR>"] = cmp.mapping.confirm({ select = false }),
-    -- ["<Right>"] = cmp.mapping.confirm { select = true }, -- This is the worst thing ever
-    ["<Tab>"] = cmp.mapping(function(fallback)
+    ["<Tab>"] = cmp_mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
-      elseif luasnip.jumpable(1) then
-        luasnip.jump(1)
-      elseif luasnip.expand_or_jumpable() then
+      elseif luasnip.expand_or_locally_jumpable() then
         luasnip.expand_or_jump()
-      elseif luasnip.expandable() then
-        luasnip.expand()
-      elseif check_backspace() then
+      elseif jumpable(1) then
+        luasnip.jump(1)
+      elseif has_words_before() then
         -- cmp.complete()
         fallback()
       else
         fallback()
       end
-    end, {
-      "i",
-      "s",
-    }),
-    ["<S-Tab>"] = cmp.mapping(function(fallback)
+    end, { "i", "s" }),
+    ["<S-Tab>"] = cmp_mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
       elseif luasnip.jumpable(-1) then
@@ -99,10 +96,33 @@ cmp.setup({
       else
         fallback()
       end
-    end, {
-      "i",
-      "s",
-    }),
+    end, { "i", "s" }),
+    ["<C-Space>"] = cmp_mapping.complete(),
+    ["<C-e>"] = cmp_mapping.abort(),
+    ["<CR>"] = cmp_mapping(function(fallback)
+      if cmp.visible() then
+        local confirm_opts = vim.deepcopy({
+          behavior = ConfirmBehavior.Replace,
+          select = false,
+        }) -- avoid mutating the original opts below
+        local is_insert_mode = function()
+          return vim.api.nvim_get_mode().mode:sub(1, 1) == "i"
+        end
+        if is_insert_mode() then -- prevent overwriting brackets
+          confirm_opts.behavior = ConfirmBehavior.Insert
+        end
+        local entry = cmp.get_selected_entry()
+        local is_copilot = entry and entry.source.name == "copilot"
+        if is_copilot then
+          confirm_opts.behavior = ConfirmBehavior.Replace
+          confirm_opts.select = true
+        end
+        if cmp.confirm(confirm_opts) then
+          return -- success, exit early
+        end
+      end
+      fallback() -- if not exited early, always fallback
+    end),
   }),
   -- formatting = {
   -- 	fields = { "kind", "abbr", "menu" },
@@ -112,25 +132,72 @@ cmp.setup({
   -- 	}),
   -- },
 
+  -- formatting = {
+  --   format = lspkind.cmp_format({
+  --     mode = "symbol_text",
+  --     maxwidth = 50,
+  --
+  --     before = function(entry, vim_item)
+  --       vim_item.kind = lspkind.presets.default[vim_item.kind]
+  --
+  --       local menu = source_mapping[entry.source.name]
+  --       vim_item.menu = menu
+  --       return vim_item
+  --     end,
+  --   }),
+  -- },
   formatting = {
-    format = lspkind.cmp_format({
-      mode = "symbol_text",
-      maxwidth = 50,
-
-      before = function(entry, vim_item)
-        vim_item.kind = lspkind.presets.default[vim_item.kind]
-
-        local menu = source_mapping[entry.source.name]
-        -- if entry.source.name == "cmp_tabnine" then
-        --   if entry.completion_item.data ~= nil and entry.completion_item.data.detail ~= nil then
-        --     menu = entry.completion_item.data.detail .. " " .. menu
-        --   end
-        --   vim_item.kind = ""
-        -- end
-        vim_item.menu = menu
-        return vim_item
-      end,
-    }),
+    fields = { "kind", "abbr", "menu" },
+    max_width = 0,
+    kind_icons = {
+      Array = "",
+      Boolean = "",
+      Class = "",
+      Color = "",
+      Constant = "",
+      Constructor = "",
+      Enum = "",
+      EnumMember = "",
+      Event = "",
+      Field = "",
+      File = "",
+      Folder = "󰉋",
+      Function = "",
+      Interface = "",
+      Key = "",
+      Keyword = "",
+      Method = "",
+      Module = "",
+      Namespace = "",
+      Null = "󰟢",
+      Number = "",
+      Object = "",
+      Operator = "",
+      Package = "",
+      Property = "",
+      Reference = "",
+      Snippet = "",
+      String = "",
+      Struct = "",
+      Text = "",
+      TypeParameter = "",
+      Unit = "",
+      Value = "",
+      Variable = "",
+    },
+    source_names = {
+      nvim_lsp = "(LSP)",
+      emoji = "(Emoji)",
+      path = "(Path)",
+      calc = "(Calc)",
+      cmp_tabnine = "(Tabnine)",
+      vsnip = "(Snippet)",
+      luasnip = "(Snippet)",
+      buffer = "(Buffer)",
+      tmux = "(TMUX)",
+      copilot = "(Copilot)",
+      treesitter = "(TreeSitter)",
+    },
   },
   -- sources = {
   -- 	{ name = "crates", group_index = 1 },
@@ -144,27 +211,27 @@ cmp.setup({
   -- 	{ name = "emoji", group_index = 2 },
   -- },
   sources = {
-    { name = "luasnip",    max_item_count = 5 },
-    { name = "nvim_lsp",   max_item_count = 5 },
-    -- { name = "nvim_lsp_signature_help", max_item_count = 5 },
-    -- { name = "cmp_tabnine" },
-    { name = "treesitter", max_item_count = 5 },
-    -- { name = "rg", max_item_count = 2 },
-    { name = "buffer",     max_item_count = 5 },
-    { name = "nvim_lua" },
+    {
+      name = "nvim_lsp",
+      entry_filter = function(entry, ctx)
+        local kind = require("cmp.types.lsp").CompletionItemKind[entry:get_kind()]
+        if kind == "Snippet" and ctx.prev_context.filetype == "java" then
+          return false
+        end
+        return true
+      end,
+    },
+
     { name = "path" },
-    -- {
-    -- 	name = "spell",
-    -- 	max_item_count = 5,
-    -- 	option = {
-    -- 		keep_all_entries = true,
-    -- 		enable_in_context = function()
-    -- 			return true
-    -- 		end,
-    -- 	},
-    -- },
+    { name = "luasnip" },
+    { name = "cmp_tabnine" },
+    { name = "nvim_lua" },
+    { name = "buffer" },
+    { name = "calc" },
     { name = "emoji" },
-    -- { name = "calc" },
+    { name = "treesitter" },
+    { name = "crates" },
+    { name = "tmux" },
   },
   sorting = {
     priority_weight = 2,
@@ -200,6 +267,7 @@ cmp.setup({
     },
   },
   experimental = {
-    ghost_text = true,
+    ghost_text = false,
+    native_menu = false,
   },
 })
