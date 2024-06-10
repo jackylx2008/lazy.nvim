@@ -4,11 +4,11 @@ local au = vim.api.nvim_create_autocmd
 ---Highlight yanked text
 --
 au("TextYankPost", {
-	group = ag("yank_highlight", {}),
-	pattern = "*",
-	callback = function()
-		vim.highlight.on_yank({ higroup = "IncSearch", timeout = 300 })
-	end,
+  group = ag("yank_highlight", {}),
+  pattern = "*",
+  callback = function()
+    vim.highlight.on_yank({ higroup = "IncSearch", timeout = 300 })
+  end,
 })
 
 vim.cmd([[
@@ -18,14 +18,14 @@ vim.cmd([[
   endfunction
 
   function TestI()
-    let b:caret = winsaveview()    
+    let b:caret = winsaveview()
     %SnipRun
     call winrestview(b:caret)
   endfunction
 ]])
 
 function M.sniprun_enable()
-	vim.cmd([[
+  vim.cmd([[
     %SnipRun
 
     augroup _sniprun
@@ -34,117 +34,139 @@ function M.sniprun_enable()
      autocmd TextChangedI * call TestI()
     augroup end
   ]])
-	vim.notify("Enabled SnipRun")
+  vim.notify("Enabled SnipRun")
 end
 
 function M.disable_sniprun()
-	M.remove_augroup("_sniprun")
-	vim.cmd([[
+  M.remove_augroup("_sniprun")
+  vim.cmd([[
     SnipClose
     SnipTerminate
     ]])
-	vim.notify("Disabled SnipRun")
+  vim.notify("Disabled SnipRun")
 end
 
 function M.toggle_sniprun()
-	if vim.fn.exists("#_sniprun#TextChanged") == 0 then
-		M.sniprun_enable()
-	else
-		M.disable_sniprun()
-	end
+  if vim.fn.exists("#_sniprun#TextChanged") == 0 then
+    M.sniprun_enable()
+  else
+    M.disable_sniprun()
+  end
 end
 
 function M.remove_augroup(name)
-	if vim.fn.exists("#" .. name) == 1 then
-		vim.cmd("au! " .. name)
-	end
+  if vim.fn.exists("#" .. name) == 1 then
+    vim.cmd("au! " .. name)
+  end
 end
 
 vim.cmd([[ command! SnipRunToggle execute 'lua require("user.functions").toggle_sniprun()' ]])
 
 -- get length of current word
 function M.get_word_length()
-	local word = vim.fn.expand("<cword>")
-	return #word
+  local word = vim.fn.expand("<cword>")
+  return #word
 end
 
 function M.toggle_option(option)
-	local value = not vim.api.nvim_get_option_value(option, {})
-	vim.opt[option] = value
-	vim.notify(option .. " set to " .. tostring(value))
+  local value = not vim.api.nvim_get_option_value(option, {})
+  vim.opt[option] = value
+  vim.notify(option .. " set to " .. tostring(value))
 end
 
 function M.toggle_tabline()
-	local value = vim.api.nvim_get_option_value("showtabline", {})
+  local value = vim.api.nvim_get_option_value("showtabline", {})
 
-	if value == 2 then
-		value = 0
-	else
-		value = 2
-	end
+  if value == 2 then
+    value = 0
+  else
+    value = 2
+  end
 
-	vim.opt.showtabline = value
+  vim.opt.showtabline = value
 
-	vim.notify("showtabline" .. " set to " .. tostring(value))
+  vim.notify("showtabline" .. " set to " .. tostring(value))
 end
 
 local diagnostics_active = true
 function M.toggle_diagnostics()
-	diagnostics_active = not diagnostics_active
-	if diagnostics_active then
-		vim.diagnostic.show()
-	else
-		vim.diagnostic.hide()
-	end
+  diagnostics_active = not diagnostics_active
+  if diagnostics_active then
+    vim.diagnostic.show()
+  else
+    vim.diagnostic.hide()
+  end
 end
 
 function M.isempty(s)
-	return s == nil or s == ""
+  return s == nil or s == ""
 end
 
 function M.get_buf_option(opt)
-	local status_ok, buf_option = pcall(vim.api.nvim_buf_get_option, 0, opt)
-	if not status_ok then
-		return nil
-	else
-		return buf_option
-	end
+  local status_ok, buf_option = pcall(vim.api.nvim_buf_get_option, 0, opt)
+  if not status_ok then
+    return nil
+  else
+    return buf_option
+  end
 end
 
 function M.smart_quit()
-	local bufnr = vim.api.nvim_get_current_buf()
-	local modified = vim.api.nvim_buf_get_option(bufnr, "modified")
-	if modified then
-		vim.ui.input({
-			prompt = "You have unsaved changes. Quit anyway? (y/n) ",
-		}, function(input)
-			if input == "y" then
-				vim.cmd("q!")
-			end
-		end)
-	else
-		-- Close neo_tree
-		require("neo-tree.sources.manager").close_all()
-		-- Close Tags (Vista)
-		vim.cmd("Vista!")
-		-- Save session
-		-- vim.cmd("Autosession save")
-		-- Quit
-		vim.cmd("q!")
-	end
+  local bufnr = vim.api.nvim_get_current_buf()
+  local modified = vim.api.nvim_buf_get_option(bufnr, "modified")
+  if modified then
+    vim.ui.input({
+      prompt = "You have unsaved changes. Quit anyway? (y/n) ",
+    }, function(input)
+      if input == "y" then
+        vim.cmd("q!")
+      end
+    end)
+  else
+    -- Close neo_tree
+    require("neo-tree.sources.manager").close_all()
+    -- Close Tags (Vista)
+    vim.cmd("Vista!")
+    -- Save session
+    -- vim.cmd("Autosession save")
+    -- Quit
+    vim.cmd("q!")
+  end
 end
 
 M.show_documentation = function()
-	local filetype = vim.bo.filetype
-	if vim.tbl_contains({ "vim", "help" }, filetype) then
-		vim.cmd("h " .. vim.fn.expand("<cword>"))
-	elseif vim.tbl_contains({ "man" }, filetype) then
-		vim.cmd("Man " .. vim.fn.expand("<cword>"))
-	elseif vim.fn.expand("%:t") == "Cargo.toml" then
-		require("crates").show_popup()
-	else
-		vim.lsp.buf.hover()
-	end
+  local filetype = vim.bo.filetype
+  if vim.tbl_contains({ "vim", "help" }, filetype) then
+    vim.cmd("h " .. vim.fn.expand("<cword>"))
+  elseif vim.tbl_contains({ "man" }, filetype) then
+    vim.cmd("Man " .. vim.fn.expand("<cword>"))
+  elseif vim.fn.expand("%:t") == "Cargo.toml" then
+    require("crates").show_popup()
+  else
+    vim.lsp.buf.hover()
+  end
+end
+
+function M.is_windows()
+  return vim.loop.os_uname().sysname == "Windows_NT"
+end
+
+function M.is_linux()
+  return vim.loop.os_uname().sysname == "Linux"
+end
+
+function M.is_wsl()
+  return string.find(vim.loop.os_uname().release, "WSL") ~= nil
+end
+
+function M.file_exists(file)
+  local fid = io.open(file, "r")
+  if fid ~= nil then
+    io.close(fid)
+    return true
+  else
+    return false
+  end
 end
 
 return M
