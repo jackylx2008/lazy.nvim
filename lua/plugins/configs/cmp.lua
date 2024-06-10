@@ -8,35 +8,54 @@ if not snip_status_ok then
   return
 end
 
-local lspkind_status_ok, lspkind = pcall(require, "lspkind")
-if not lspkind_status_ok then
-  return
-end
-
 local cmp_mapping = require("cmp.config.mapping")
-local compare = require("cmp.config.compare")
+-- local compare = require("cmp.config.compare")
 local status_cmp_ok, cmp_types = pcall(require, "cmp.types.cmp")
 if not status_cmp_ok then
   return
 end
+
 local ConfirmBehavior = cmp_types.ConfirmBehavior
 local SelectBehavior = cmp_types.SelectBehavior
 
 require("luasnip/loaders/from_vscode").lazy_load()
 
--- local check_backspace = function()
---   local col = vim.fn.col "." - 1
---   return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
--- end
-
-local check_backspace = function()
-  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-end
-
-local icons = require("plugins.configs.icons")
-
-local kind_icons = icons.kind
+local kind_icons = {
+  Array = "",
+  Boolean = "",
+  Class = "",
+  Color = "",
+  Constant = "",
+  Constructor = "",
+  Enum = "",
+  EnumMember = "",
+  Event = "",
+  Field = "",
+  File = "",
+  Folder = "󰉋",
+  Function = "",
+  Interface = "",
+  Key = "",
+  Keyword = "",
+  Method = "",
+  Module = "",
+  Namespace = "",
+  Null = "󰟢",
+  Number = "",
+  Object = "",
+  Operator = "",
+  Package = "",
+  Property = "",
+  Reference = "",
+  Snippet = "",
+  String = "",
+  Struct = "",
+  Text = "",
+  TypeParameter = "",
+  Unit = "",
+  Value = "",
+  Variable = "",
+}
 
 vim.opt.completeopt = "menu,menuone,noselect"
 vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
@@ -124,67 +143,10 @@ cmp.setup({
       fallback() -- if not exited early, always fallback
     end),
   }),
-  -- formatting = {
-  -- 	fields = { "kind", "abbr", "menu" },
-  -- 	format = lspkind.cmp_format({
-  -- 		maxwidth = 50,
-  -- 		-- ellipsis_char = "...",
-  -- 	}),
-  -- },
-
-  -- formatting = {
-  --   format = lspkind.cmp_format({
-  --     mode = "symbol_text",
-  --     maxwidth = 50,
-  --
-  --     before = function(entry, vim_item)
-  --       vim_item.kind = lspkind.presets.default[vim_item.kind]
-  --
-  --       local menu = source_mapping[entry.source.name]
-  --       vim_item.menu = menu
-  --       return vim_item
-  --     end,
-  --   }),
-  -- },
   formatting = {
     fields = { "kind", "abbr", "menu" },
+    kind_icons = kind_icons,
     max_width = 0,
-    kind_icons = {
-      Array = "",
-      Boolean = "",
-      Class = "",
-      Color = "",
-      Constant = "",
-      Constructor = "",
-      Enum = "",
-      EnumMember = "",
-      Event = "",
-      Field = "",
-      File = "",
-      Folder = "󰉋",
-      Function = "",
-      Interface = "",
-      Key = "",
-      Keyword = "",
-      Method = "",
-      Module = "",
-      Namespace = "",
-      Null = "󰟢",
-      Number = "",
-      Object = "",
-      Operator = "",
-      Package = "",
-      Property = "",
-      Reference = "",
-      Snippet = "",
-      String = "",
-      Struct = "",
-      Text = "",
-      TypeParameter = "",
-      Unit = "",
-      Value = "",
-      Variable = "",
-    },
     source_names = {
       nvim_lsp = "(LSP)",
       emoji = "(Emoji)",
@@ -199,17 +161,6 @@ cmp.setup({
       treesitter = "(TreeSitter)",
     },
   },
-  -- sources = {
-  -- 	{ name = "crates", group_index = 1 },
-  -- 	{ name = "nvim_lsp", group_index = 2 },
-  -- 	{ name = "nvim_lua", group_index = 2 },
-  -- 	-- { name = "copilot", group_index = 2 },
-  -- 	{ name = "luasnip", group_index = 2 },
-  -- 	{ name = "buffer", group_index = 2 },
-  -- 	{ name = "cmp_tabnine", group_index = 2 },
-  -- 	{ name = "path", group_index = 2 },
-  -- 	{ name = "emoji", group_index = 2 },
-  -- },
   sources = {
     {
       name = "nvim_lsp",
@@ -221,7 +172,6 @@ cmp.setup({
         return true
       end,
     },
-
     { name = "path" },
     { name = "luasnip" },
     { name = "cmp_tabnine" },
@@ -232,25 +182,6 @@ cmp.setup({
     { name = "treesitter" },
     { name = "crates" },
     { name = "tmux" },
-  },
-  sorting = {
-    priority_weight = 2,
-    comparators = {
-      -- require("copilot_cmp.comparators").prioritize,
-      -- require("copilot_cmp.comparators").score,
-      compare.offset,
-      compare.exact,
-      -- compare.scopes,
-      compare.score,
-      compare.recently_used,
-      compare.locality,
-      -- compare.kind,
-      compare.sort_text,
-      compare.length,
-      compare.order,
-      -- require("copilot_cmp.comparators").prioritize,
-      -- require("copilot_cmp.comparators").score,
-    },
   },
   confirm_opts = {
     behavior = cmp.ConfirmBehavior.Replace,
