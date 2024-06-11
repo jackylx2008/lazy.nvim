@@ -15,6 +15,10 @@ git clone https://github.com/jackylx2008/lazy.nvim.git ~/.config/nvim
 
 ## 更新记录
 
+### 2024-06-11 11:06
+
+Add .luacheckrc and lspconfig `lua_ls` settings to suppress waring msg "Undefined global vim"
+
 ### 2024-03-03 17:32
 
 To make clangd recognize c++ standard headers:
@@ -98,7 +102,7 @@ filter=-runtime/indentation_namespace,-build/namespaces,-whitespace/indent,-lega
 A lot of the keybinds will not make much sense if you just try to use it. This is because i'm using a QMK compatible keyboard and a lot of these keybinds
 is in a layer in my keyboard. If you wanna understand better you can check out the layer definition here: [Layer](https://github.com/arturgoms/keyboards/blob/main/src/qmk/keyboards/idobao/id75/keymaps/arturgoms/keymap.c), the layout here [Layout](https://github.com/arturgoms/keyboards/blob/main/src/qmk/users/arturgoms/definitions/keymap_blocks.h) and the macros here [Macros](https://github.com/arturgoms/keyboards/blob/e39ecd8037dd40efd1e9938310c34aa21b97ec80/src/qmk/users/arturgoms/features/macros.c#L328)
 
-## Plugins:
+## Plugins
 
 Not all but the main ones
 
@@ -125,13 +129,13 @@ Not all but the main ones
   - [Auto Session](https://github.com/rmagatti/auto-session) -> Auto create and restore sessions
   - [Vista](https://github.com/liuchengxu/vista.vim) -> Vizualizer for ctags
 
-## Maybe Plugins:
+## Maybe Plugins
 
 Not in the system but may be in the future
 
 - [undotree](https://github.com/mbbill/undotree) -> Buffer that shows the history of undo
 
-## Keybinds:
+## Keybinds
 
 WIP: but you can hit space to see whichkey
 
@@ -144,7 +148,7 @@ WIP: but you can hit space to see whichkey
 - Normal `S-a` -> Go to 3 file in Harpoon
 - Normal `S-x` -> Go to 4 file in Harpoon
 
-## Vim Motions:
+## Vim Motions
 
 WIP: i keep forgeting these
 
@@ -159,19 +163,19 @@ WIP: i keep forgeting these
 - `gc` -> toggle inline comment
 - `gb` -> toggle inline comment
 
-## Install:
+## Install
 
 ```shell
 mv ~/.config/nvim/ ~/.config/nvim.bak
 git clone https://github.com/arturgoms/nvim.git ~/.config/nvim
 ```
 
-## TODO:
+## TODO
 
 - [x] When closing the last buffer also closes the neotree and vista and get out of vim
 - [x] Make function to close vim and save session even with a lot of buffers opened (`<leader>q`)
 
-## Credits:
+## Credits
 
 A lot from here is a combination os things that i did but also a lot from others config.
 
