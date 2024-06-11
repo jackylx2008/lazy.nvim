@@ -17,6 +17,7 @@ end
 
 local ConfirmBehavior = cmp_types.ConfirmBehavior
 local SelectBehavior = cmp_types.SelectBehavior
+local compare = require("cmp.config.compare")
 
 require("luasnip/loaders/from_vscode").lazy_load()
 
@@ -147,19 +148,6 @@ cmp.setup({
     fields = { "kind", "abbr", "menu" },
     kind_icons = kind_icons,
     max_width = 0,
-    source_names = {
-      nvim_lsp = "(LSP)",
-      emoji = "(Emoji)",
-      path = "(Path)",
-      calc = "(Calc)",
-      cmp_tabnine = "(Tabnine)",
-      vsnip = "(Snippet)",
-      luasnip = "(Snippet)",
-      buffer = "(Buffer)",
-      tmux = "(TMUX)",
-      copilot = "(Copilot)",
-      treesitter = "(TreeSitter)",
-    },
   },
   sources = {
     {
@@ -182,6 +170,25 @@ cmp.setup({
     { name = "treesitter" },
     { name = "crates" },
     { name = "tmux" },
+  },
+  sorting = {
+    priority_weight = 2,
+    comparators = {
+      -- require("copilot_cmp.comparators").prioritize,
+      -- require("copilot_cmp.comparators").score,
+      compare.offset,
+      compare.exact,
+      -- compare.scopes,
+      compare.score,
+      compare.recently_used,
+      compare.locality,
+      -- compare.kind,
+      compare.sort_text,
+      compare.length,
+      compare.order,
+      -- require("copilot_cmp.comparators").prioritize,
+      -- require("copilot_cmp.comparators").score,
+    },
   },
   confirm_opts = {
     behavior = cmp.ConfirmBehavior.Replace,
