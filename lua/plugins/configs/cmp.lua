@@ -97,12 +97,12 @@ cmp.setup({
     ["<Tab>"] = cmp_mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
-      elseif luasnip.expand_or_locally_jumpable() then
-        luasnip.expand_or_jump()
+        -- elseif luasnip.expand_or_locally_jumpable() then
+        --   luasnip.expand_or_jump()
       elseif jumpable(1) then
         luasnip.jump(1)
       elseif has_words_before() then
-        -- cmp.complete()
+        cmp.complete()
         fallback()
       else
         fallback()
@@ -152,13 +152,13 @@ cmp.setup({
   sources = {
     {
       name = "nvim_lsp",
-      entry_filter = function(entry, ctx)
-        local kind = require("cmp.types.lsp").CompletionItemKind[entry:get_kind()]
-        if kind == "Snippet" and ctx.prev_context.filetype == "java" then
-          return false
-        end
-        return true
-      end,
+      -- entry_filter = function(entry, ctx)
+      --   local kind = require("cmp.types.lsp").CompletionItemKind[entry:get_kind()]
+      --   if kind == "Snippet" and ctx.prev_context.filetype == "java" then
+      --     return false
+      --   end
+      --   return true
+      -- end,
     },
     { name = "path" },
     { name = "luasnip" },
@@ -169,7 +169,7 @@ cmp.setup({
     { name = "emoji" },
     { name = "treesitter" },
     { name = "crates" },
-    { name = "tmux" },
+    -- { name = "tmux" },
   },
   sorting = {
     priority_weight = 2,
