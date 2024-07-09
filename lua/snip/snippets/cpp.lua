@@ -12,7 +12,21 @@ local events = require("luasnip.util.events")
 local r = ls.restore_node
 
 local snippets = {
-	s("todo", t("// TODO: ")),
-	s("str", t("std::string ")),
+  s("todo", t("// TODO: ")),
+  s("str", t("std::string ")),
+
+  -- Input/Output
+  ---- std::cout
+  -- s("ct", {
+  --   t('std::cout << "'),
+  --   i(1),
+  --   t('" << std::endl;'),
+  -- }),
+  ---- std::cin
+  -- s("cn", {
+  --   t("std::cin << "),
+  --   i(1),
+  --   t(";"),
+  -- }),
 }
 return snippets
