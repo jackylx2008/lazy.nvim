@@ -41,19 +41,32 @@ local snippets = {
 
       #endif  // !{}
       ]],
-      {
-        i(1, "HEADER"),
-        rep(1),
-        rep(1),
-      }
+      { i(1, "HEADER"), rep(1), rep(1) }
     )
   ),
 
   --Class
-  s("mc", {
-    t("class {}"),
+  s("mcl", {
+    -- Line1
+    t({ "class " }),
     i(1),
-    t("{\n"),
+    t({ "{", "" }),
+
+    t({ "  private:", "" }),
+    t({ "    " }),
+    i(2),
+    t({ "" }),
+
+    t({ "", "  public:", "" }),
+    t({ "    " }),
+
+    rep(1),
+    t({ "();", "" }),
+    t({ "    ~" }),
+
+    rep(1),
+    t({ "();", "" }),
+    t({ "};", "" }),
   }),
 }
 return snippets
