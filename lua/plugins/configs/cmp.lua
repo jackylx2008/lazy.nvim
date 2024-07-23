@@ -117,8 +117,9 @@ cmp.setup({
         fallback()
       end
     end, { "i", "s" }),
-    ["<C-Space>"] = cmp_mapping.complete(),
-    ["<C-e>"] = cmp_mapping.abort(),
+    ["<C-i>"] = cmp_mapping.complete(),
+    ["<C-o>"] = cmp_mapping.abort(),
+    ["<ESC>"] = cmp_mapping.abort(),
     ["<CR>"] = cmp_mapping(function(fallback)
       if cmp.visible() then
         local confirm_opts = vim.deepcopy({
@@ -209,4 +210,3 @@ cmp.setup({
     native_menu = false,
   },
 })
-
