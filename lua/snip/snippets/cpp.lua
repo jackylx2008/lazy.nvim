@@ -10,23 +10,50 @@ local fmt = require("luasnip.extras.fmt").fmt
 local types = require("luasnip.util.types")
 local events = require("luasnip.util.events")
 local r = ls.restore_node
+local rep = require("luasnip.extras").rep
 
 local snippets = {
   s("todo", t("// TODO: ")),
   s("str", t("std::string ")),
 
   -- Input/Output
-  ---- std::cout
-  -- s("ct", {
-  --   t('std::cout << "'),
-  --   i(1),
-  --   t('" << std::endl;'),
-  -- }),
-  ---- std::cin
-  -- s("cn", {
-  --   t("std::cin << "),
-  --   i(1),
-  --   t(";"),
-  -- }),
+  -- std::cout
+  s("ct", {
+    t('std::cout << "'),
+    i(1),
+    t('" << std::endl;'),
+  }),
+  -- std::cin
+  s("cn", {
+    t("std::cin << "),
+    i(1),
+    t(";"),
+  }),
+
+  -- Header
+  s(
+    "ifn",
+    fmt(
+      [[
+      #ifndef {}
+      #define {}
+
+
+      #endif  // !{}
+      ]],
+      {
+        i(1, "HEADER"),
+        rep(1),
+        rep(1),
+      }
+    )
+  ),
+
+  --Class
+  s("mc", {
+    t("class {}"),
+    i(1),
+    t("{\n"),
+  }),
 }
 return snippets
