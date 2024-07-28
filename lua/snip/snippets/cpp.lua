@@ -30,6 +30,34 @@ local snippets = {
     t(";"),
   }),
 
+  -- return *this
+  s("rt", t("return *this;")),
+
+  -- const char*
+  s("ch", t({ "const char* ", i(1) })),
+
+  -- const &
+  s(
+    "ift",
+    fmt(
+      [[
+      if (this == &{}) {
+          return *this;
+      }
+      ]],
+      { i(1) }
+    )
+  ),
+  s(
+    "cc",
+    fmt(
+      [[
+      const {}&
+      ]],
+      { i(1) }
+    )
+  ),
+
   -- Header
   s(
     "ifn",
@@ -37,11 +65,12 @@ local snippets = {
       [[
       #ifndef {}
       #define {}
+      {}
 
 
       #endif  // !{}
       ]],
-      { i(1, "HEADER"), rep(1), rep(1) }
+      { i(1, "HEADER"), rep(1), i(2, "Class"), rep(1) }
     )
   ),
 
@@ -74,7 +103,7 @@ local snippets = {
     t({ "    " }),
     rep(1),
     t({ "& " }),
-    t({ "operator==(const " }),
+    t({ "operator=(const " }),
     rep(1),
     t({ "& " }),
     i(4),
