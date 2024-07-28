@@ -34,20 +34,16 @@ local snippets = {
   s("rt", t("return *this;")),
 
   -- const char*
-  s("ch", t({ "const char* ", i(1) })),
-
-  -- const &
   s(
-    "ift",
+    "ch",
     fmt(
       [[
-      if (this == &{}) {
-          return *this;
-      }
+      const char* {}
       ]],
       { i(1) }
     )
   ),
+
   s(
     "cc",
     fmt(
@@ -73,6 +69,15 @@ local snippets = {
       { i(1, "HEADER"), rep(1), i(2, "Class"), rep(1) }
     )
   ),
+
+  -- const &
+  s("ift", {
+    t({ "if (this == &" }),
+    i(1),
+    t({ ") {", "" }),
+    t({ "    return *this;", "" }),
+    t({ "}", "" }),
+  }),
 
   --Class
   s("mcl", {
