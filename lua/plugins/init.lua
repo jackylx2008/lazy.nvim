@@ -32,6 +32,7 @@ return {
 	-- Whichkey
 	{
 		"folke/which-key.nvim",
+		commit = "0539da005b98b02cf730c1d9da82b8e8edb1c2d2",
 		event = "VeryLazy",
 		config = function()
 			require("plugins.configs.whichkey")
@@ -89,7 +90,6 @@ return {
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope-media-files.nvim",
-			"rmagatti/auto-session",
 			{
 				"nvim-telescope/telescope-fzf-native.nvim",
 				build = "make",
@@ -333,7 +333,7 @@ return {
 	-- Sessions TODO: Check the keybinds
 	{
 		"rmagatti/auto-session",
-		-- commit = "7afbb149f87be279778689596c781882014f7eef",
+		commit = "7afbb149f87be279778689596c781882014f7eef",
 		config = function()
 			require("plugins.configs.auto-session")
 		end,
