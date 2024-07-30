@@ -66,7 +66,7 @@ local snippets = {
 
       #endif  // !{}
       ]],
-      { i(1, "HEADER"), rep(1), i(2, "Class"), rep(1) }
+      { i(1, "HEADER"), rep(1), i(2), rep(1) }
     )
   ),
 
