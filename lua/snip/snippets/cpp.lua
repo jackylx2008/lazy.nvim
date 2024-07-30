@@ -48,9 +48,9 @@ local snippets = {
     "cc",
     fmt(
       [[
-      const {}&
+      const {}& {}
       ]],
-      { i(1) }
+      { i(1), i(2) }
     )
   ),
 
