@@ -70,6 +70,19 @@ local snippets = {
     )
   ),
 
+  -- osteam <<
+  s("oss", {
+    t({ "std::ostream& operator<<(std::ostream& os, const " }),
+    i(1),
+    t({ "& " }),
+    i(2),
+    t({ ") {", "" }),
+    t({ "    " }),
+    i(3),
+    t({ "", "" }),
+    t({ "}" }),
+  }),
+
   -- const &
   s("ift", {
     t({ "if (this == &" }),
