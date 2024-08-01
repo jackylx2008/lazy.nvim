@@ -16,7 +16,18 @@ local snippets = {
   s("todo", t("// TODO: ")),
   s("str", t("std::string ")),
 
-  -- Input/Output
+  -- while '\n' continue
+  s(
+    "wc",
+    fmt(
+      [[
+      while (std::cin.get() != '\n') continue;
+      {}
+      ]],
+      { i(1) }
+    )
+  ),
+
   -- std::cout
   s("ct", {
     t('std::cout << "'),

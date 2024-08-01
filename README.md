@@ -39,7 +39,7 @@ filter=-runtime/indentation_namespace,-build/namespaces,-whitespace/indent,-lega
 
 ### 2023-07-26 14:58
 
-`harpoon` 和 `auto-session` 考虑是否删除
+`harpoon` 考虑是否删除
 
 ### 2023-03-14 11:00
 
