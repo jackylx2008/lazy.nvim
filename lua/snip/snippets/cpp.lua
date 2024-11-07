@@ -44,6 +44,9 @@ local snippets = {
   -- return *this
   s("rt", t("return *this;")),
 
+  -- Template
+  s("tt", t("template <typename T>")),
+
   -- const char*
   s(
     "ch",
@@ -108,11 +111,13 @@ local snippets = {
     -- Line1
     t({ "class " }),
     i(1),
-    t({ "{", "" }),
+    t({ " " }),
+    i(2),
+    t({ " {", "" }),
 
     t({ "  private:", "" }),
     t({ "    " }),
-    i(2),
+    i(3),
     t({ "" }),
 
     t({ "", "  public:", "" }),
@@ -126,7 +131,7 @@ local snippets = {
     t({ "(const " }),
     rep(1),
     t({ "& " }),
-    i(3),
+    i(4),
     t({ ");", "" }),
 
     t({ "    " }),
@@ -135,7 +140,7 @@ local snippets = {
     t({ "operator=(const " }),
     rep(1),
     t({ "& " }),
-    i(4),
+    i(5),
     t({ ");", "" }),
 
     t({ "    ~" }),
