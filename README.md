@@ -8,7 +8,10 @@ mv ~/.local/share/nvim ~/.local/share/nvim.bak
 mv ~/.local/state/nvim ~/.local/state/nvim.bak
 mv ~/.cache/nvim ~/.cache/nvim.bak
 
+# in MacOS or Linux
 git clone https://github.com/jackylx2008/lazy.nvim.git ~/.config/nvim
+# in Windows
+git clone https://github.com/jackylx2008/lazy.nvim.git ~/AppData/Local/nvim/
 ```
 
 # nvim_lazy.nvim
